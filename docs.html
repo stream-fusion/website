@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" class="transition-colors duration-300">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stream Fusion – Sidebar Toggle</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body
+    class="font-sans bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 min-h-screen"
+  >
+    <!-- Overlay -->
+    <div
+      id="overlay"
+      class="fixed inset-0 hidden z-30 pointer-events-none"
+    ></div>
+
+    <!-- Sidebar (closed by default) -->
+    <aside
+      id="sidebar"
+      class="fixed inset-y-0 left-0 w-72 bg-white text-gray-900 border-r border-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-700 transform -translate-x-full transition-transform duration-300 z-40 flex flex-col overflow-hidden"
+      aria-label="Sidebar"
+      aria-hidden="true"
+    >
+      <div
+        class="h-16 flex items-center px-4 border-b border-gray-200 dark:border-gray-700"
+      >
+        <img src="logo-1.png" alt="Stream Fusion Logo" class="w-8 h-8 mr-3" />
+        <span class="font-bold">Stream Fusion</span>
+
+        <!-- CLOSE icon (angle-left) -->
+        <button
+          id="sidebar-close"
+          class="ml-auto p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 hidden"
+          aria-label="Close sidebar"
+        >
+          <i class="fa-solid fa-angle-left text-xl"></i>
+        </button>
+      </div>
+
+      <nav
+        id="side-nav"
+        class="px-4 pb-4 space-y-1 text-sm overflow-y-auto flex-1 min-h-0"
+      >
+        <!-- Top links -->
+
+        <button
+          id="btn-introduction"
+          class="w-full flex items-center justify-between px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+          aria-expanded="false"
+          aria-controls="sub-introduction"
+        >
+          <span class="font-semibold">Introduction</span>
+        </button>
+
+        <button
+          id="btn-getStarted"
+          class="w-full flex items-center justify-between px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+          aria-expanded="false"
+          aria-controls="sub-getStarted"
+        >
+          <span class="font-semibold">Get Started</span>
+        </button>
+        <!-- Tutorials (accordion) -->
+        <div class="my-1">
+          <button
+            id="btn-tutorials"
+            class="w-full flex items-center justify-between px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+            aria-expanded="false"
+            aria-controls="sub-tutorials"
+          >
+            <span class="font-semibold">Tutorials</span>
+            <i
+              class="fa-solid fa-angle-right transition-transform duration-200"
+              data-chevron
+            ></i>
+          </button>
+          <ul
+            id="sub-tutorials"
+            class="mt-1 ml-2 pl-3 border-l border-gray-200 dark:border-gray-700 space-y-1 hidden"
+          >
+            <li>
+              <a
+                class="block px-2 py-1 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+                href="#ChatLanguageModels"
+                >Chat and Language Models</a
+              >
+            </li>
+            <li>
+              <a
+                class="block px-2 py-1 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+                href="#ChatMemory"
+                >Chat Memory</a
+              >
+            </li>
+            <li>
+              <a
+                class="block px-2 py-1 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+                href="#ModelParameters"
+                >Model Parameters</a
+              >
+            </li>
+            <li>
+              <a
+                class="block px-2 py-1 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+                href="#ResponseStreaming"
+                >Response Streaming</a
+              >
+            </li>
+            <li>
+              <a
+                class="block px-2 py-1 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+                href="#AIServices"
+                >AI Services</a
+              >
+            </li>
+            <li>
+              <a
+                class="block px-2 py-1 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+                href="#Agents"
+                >Agents and Agentic AI</a
+              >
+            </li>
+            <li>
+              <a
+                class="block px-2 py-1 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+                href="#Tools"
+                >Tools (Function Calling)</a
+              >
+            </li>
+            <li>
+              <a
+                class="block px-2 py-1 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+                href="#RAG"
+                >RAG (Retrieval-Augmented Generation)</a
+              >
+            </li>
+            <li>
+              <a
+                class="block px-2 py-1 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+                href="#StructuredOutputs"
+                >Structured Outputs</a
+              >
+            </li>
+            <li>
+              <a
+                class="block px-2 py-1 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+                href="#Guardrails"
+                >Guardrails</a
+              >
+            </li>
+            <li>
+              <a
+                class="block px-2 py-1 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+                href="#Classification"
+                >Classification</a
+              >
+            </li>
+            <li>
+              <a
+                class="block px-2 py-1 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+                href="#EmbeddingStores"
+                >Embedding (Vector) Stores</a
+              >
+            </li>
+            <li>
+              <a
+                class="block px-2 py-1 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+                href="#ImageModels"
+                >Image Models</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Integrations (accordion) -->
+        <div class="my-1">
+          <button
+            id="btn-integrations"
+            class="w-full flex items-center justify-between px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+            aria-expanded="false"
+            aria-controls="sub-integrations"
+          >
+            <span class="font-semibold">Integrations</span>
+            <i
+              class="fa-solid fa-angle-right transition-transform duration-200"
+              data-chevron
+            ></i>
+          </button>
+
+          <ul
+            id="sub-integrations"
+            class="mt-1 ml-2 pl-3 border-l border-gray-200 dark:border-gray-700 space-y-1 hidden"
+          >
+            <!-- CHILD LEVEL -->
+            <li>
+              <button
+                id="btn-integrations-lms"
+                class="w-full flex items-center justify-between px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+                aria-expanded="false"
+                aria-controls="sub-integrations-lms"
+              >
+                <span>Language Models</span>
+                <i
+                  class="fa-solid fa-angle-right transition-transform duration-200"
+                  data-chevron
+                ></i>
+              </button>
+
+              <!-- GRANDCHILD LEVEL -->
+              <ul
+                id="sub-integrations-lms"
+                class="mt-1 ml-3 pl-3 border-l border-gray-200 dark:border-gray-700 space-y-1 hidden"
+              >
+                <li>
+                  <a
+                    href="#OpenAI"
+                    class="navlink block px-2 py-1 rounded hover:bg-pink-50 dark:hover:bg-gray-700"
+                    >OpenAI</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#Google"
+                    class="navlink block px-2 py-1 rounded hover:bg-pink-50 dark:hover:bg-gray-700"
+                    >Google</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#Anthropic"
+                    class="navlink block px-2 py-1 rounded hover:bg-pink-50 dark:hover:bg-gray-700"
+                    >Anthropic</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <!-- OTHER CHILDREN (No Change Needed) -->
+            <li>
+              <a
+                href="#EmbedModels"
+                class="navlink block px-2 py-1 rounded hover:bg-pink-50 dark:hover:bg-gray-700"
+                >Embedding Models</a
+              >
+            </li>
+            <li>
+              <a
+                href="#EmbedStores"
+                class="navlink block px-2 py-1 rounded hover:bg-pink-50 dark:hover:bg-gray-700"
+                >Embedding Stores</a
+              >
+            </li>
+            <li>
+              <a
+                href="#ChatMemoryStores"
+                class="navlink block px-2 py-1 rounded hover:bg-pink-50 dark:hover:bg-gray-700"
+                >Chat Memory Stores</a
+              >
+            </li>
+            <li>
+              <a
+                href="#DocLoaders"
+                class="navlink block px-2 py-1 rounded hover:bg-pink-50 dark:hover:bg-gray-700"
+                >Document Loaders</a
+              >
+            </li>
+            <!-- ... keep rest same ... -->
+          </ul>
+        </div>
+
+        <!-- Bottom links -->
+        <div class="my-1">
+          <button
+            id="btn-materials"
+            class="w-full flex items-center justify-between px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+            aria-expanded="false"
+            aria-controls="sub-materials"
+          >
+            <span class="font-semibold">Useful Materials</span>
+            <i
+              class="fa-solid fa-angle-right transition-transform duration-200"
+              data-chevron
+            ></i>
+          </button>
+
+          <ul
+            id="sub-materials"
+            class="mt-1 ml-2 pl-3 border-l border-gray-200 dark:border-gray-700 space-y-1 hidden"
+          >
+            <li>
+              <a
+                href="#UIKits"
+                class="block px-2 py-1 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+              >
+                Overview
+              </a>
+            </li>
+          </ul>
+        </div>
+        <button
+          id="btn-latestReleaseNotes"
+          class="w-full flex items-center justify-between px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+          aria-expanded="false"
+          aria-controls="sub-latestReleaseNotes"
+        >
+          <span class="font-semibold">Latest Release Note</span>
+        </button>
+        <!-- <a
+          class="navlink block px-3 py-2 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
+          href="#LatestReleaseNotes"
+          >Latest Release Notes</a
+        > -->
+      </nav>
+    </aside>
+
+    <!-- Shell (shifts when sidebar opens) -->
+    <div
+      id="shell"
+      class="min-h-screen flex flex-col transition-all duration-300"
+    >
+      <header
+        class="bg-white text-gray-900 border-b border-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-700 sticky top-0 z-20"
+      >
+        <div class="mx-auto flex justify-between items-center p-3">
+          <div class="flex items-center gap-3">
+            <!-- OPEN icon (bars) -->
+            <button
+              id="sidebar-open"
+              class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+              aria-label="Open sidebar"
+            >
+              <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+            <a href="#  " class="toplink text-md font-bold">Introduction</a>
+            <a href="#GetStarted" class="toplink text-md font-bold"
+              >Get Started</a
+            >
+            <a href="#Tutorials" class="toplink text-md font-bold">Tutorials</a>
+            <a href="#Integrations" class="toplink text-md font-bold"
+              >Integrations</a
+            >
+            <a href="#UsefulMaterials" class="toplink text-md font-bold"
+              >Useful Materials</a
+            >
+            <a href="#LatestReleaseNotes" class="toplink text-md font-bold"
+              >Latest Release Notes</a
+            >
+          </div>
+
+          <button
+            id="theme-toggle"
+            class="p-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+            title="Toggle theme"
+            aria-label="Toggle theme"
+          >
+            🌙
+          </button>
+        </div>
+      </header>
+
+      <!-- ======== MAIN: all sections live here; JS shows/hides them ======== -->
+      <main id="main" class="p-6 space-y-6">
+        <!-- Introduction -->
+        <section id="Introduction" class="content-section">
+          <h2 class="text-2xl font-semibold">Welcome to Stream Fusion</h2>
+          <p class="opacity-90">Home page content here...</p>
+
+          <div class="grid gap-4 mt-4 md:grid-cols-2">
+            <div
+              class="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm"
+            >
+              <h3 class="font-semibold mb-2">What is Stream Fusion?</h3>
+              <p>Lightweight UI building blocks with Tailwind.</p>
+            </div>
+            <div
+              class="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm"
+            >
+              <h3 class="font-semibold mb-2">Why this guide?</h3>
+              <p>
+                Set up, integrate, and ship features faster—without the mess.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Get Started -->
+        <section id="GetStarted" class="content-section hidden">
+          <h2 class="text-2xl font-semibold">Get Started</h2>
+          <ol class="list-decimal pl-6 mt-2 space-y-2">
+            <li>Use Tailwind via CDN for quick prototypes.</li>
+            <li>Drop in this layout scaffold (header, sidebar, shell).</li>
+            <li>Toggle dark mode using <code>localStorage</code>.</li>
+          </ol>
+          <div
+            class="mt-4 p-4 rounded-lg bg-gray-100 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700"
+          >
+            <p class="text-sm">
+              Tip: Compose layouts with small, reusable parts.
+            </p>
+          </div>
+        </section>
+
+        <!-- Tutorials -->
+        <section id="Tutorials" class="content-section hidden">
+          <h2 class="text-2xl font-semibold">Tutorials</h2>
+          <ul class="list-disc pl-6 mt-2 space-y-2">
+            <li>Responsive sidebar that slides and locks on desktop.</li>
+            <li>Dark mode persistence and accessible toggles.</li>
+            <li>Animating reveals on scroll.</li>
+          </ul>
+        </section>
+
+        <!-- Integrations -->
+        <section id="Integrations" class="content-section hidden">
+          <h2 class="text-2xl font-semibold">Integrations</h2>
+          <div class="mt-3 grid gap-3 sm:grid-cols-2">
+            <div
+              class="p-4 rounded-lg border border-gray-200 dark:border-gray-700"
+            >
+              React + Vite
+            </div>
+            <div
+              class="p-4 rounded-lg border border-gray-200 dark:border-gray-700"
+            >
+              Alpine.js
+            </div>
+            <div
+              class="p-4 rounded-lg border border-gray-200 dark:border-gray-700"
+            >
+              Vue 3
+            </div>
+            <div
+              class="p-4 rounded-lg border border-gray-200 dark:border-gray-700"
+            >
+              Plain JS
+            </div>
+          </div>
+        </section>
+
+        <!-- Useful Materials -->
+        <section id="UsefulMaterials" class="content-section hidden">
+          <h2 class="text-2xl font-semibold">Useful Materials</h2>
+          <ul class="mt-2 space-y-2">
+            <li
+              class="p-3 rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+            >
+              UI patterns & checklists
+            </li>
+            <li
+              class="p-3 rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+            >
+              Accessibility quick refs
+            </li>
+            <li
+              class="p-3 rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+            >
+              Component snippets
+            </li>
+          </ul>
+        </section>
+
+        <!-- Latest Release Notes -->
+        <section id="LatestReleaseNotes" class="content-section hidden">
+          <h2 class="text-2xl font-semibold">Latest Release Notes</h2>
+          <p class="mt-2">
+            v1.2.0 – Performance tweaks, better dark-mode transitions, and
+            sidebar API polish.
+          </p>
+          <ul class="list-disc pl-6 mt-2 space-y-1">
+            <li>Improved keyboard navigation</li>
+            <li>New utilities for layout padding</li>
+            <li>Bug fixes for Safari</li>
+          </ul>
+        </section>
+      </main>
+
+      <footer
+        class="bg-white text-gray-900 border-t border-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-700 text-center py-4 mt-auto"
+      >
+        <p>&copy; 2025 Stream Fusion. All rights reserved.</p>
+      </footer>
+    </div>
+
+    <script src="docs-script.js" defer></script>
+  </body>
+</html>

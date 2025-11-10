@@ -1,0 +1,46 @@
+#side-nav {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #888 transparent; /* Firefox */
+}
+
+/* Chrome, Edge, Safari */
+#side-nav::-webkit-scrollbar {
+  width: 6px;
+}
+#side-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+#side-nav::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 4px;
+}
+#side-nav::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Dark mode matching */
+.dark #side-nav::-webkit-scrollbar-thumb {
+  background: #555;
+}
+.dark #side-nav::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+/* Hover */
+header .toplink:hover {
+  color: #ec4899; /* pink-500 */
+}
+
+/* Active state (matches your sidebar ACTIVE_BG) */
+header .toplink.is-active {
+  background-color: rgb(255 228 230); /* pink-100 */
+  color: rgb(190 24 93); /* pink-700 */
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+/* Dark mode */
+.dark header .toplink.is-active {
+  background-color: rgba(55, 65, 81, 0.7); /* gray-700/70 */
+  color: rgb(249 168 212); /* pink-300 */
+}

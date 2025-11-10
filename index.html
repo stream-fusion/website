@@ -1,180 +1,219 @@
 <!DOCTYPE html>
 <html lang="en" class="transition-colors duration-500">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stream Fusion</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="logo-1.png" type="image/png">
-  <style>
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .animate-float {
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes pulse-logo {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.8; }
-    }
-    .animate-pulse-logo {
-      animation: pulse-logo 2s ease-in-out infinite;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
-    .fade-section {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
-</head>
-<body class="font-sans bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stream Fusion</title>
 
-  <!-- Loader -->
-  <div id="loader" class="fixed inset-0 flex items-center justify-center bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 z-50">
-    <img src="logo-1.png" alt="Stream Fusion Logo" class="w-24 h-24 animate-pulse-logo">
-  </div>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-  <!-- Header -->
-  <header class="bg-gray-900 text-white shadow dark:bg-gray-800">
-    <div class="container mx-auto flex justify-between items-center p-4">
-      <div class="flex items-center space-x-3">
-        <img src="logo-1.png" alt="Stream Fusion Logo" class="w-10 h-10">
-        <h1 class="text-xl font-bold">Stream Fusion</h1>
-      </div>
-      <nav class="space-x-6 flex items-center">
-        <a href="#home" class="hover:text-pink-400">Home</a>
-        <a href="#about" class="hover:text-pink-400">About</a>
-        <a href="#features" class="hover:text-pink-400">Features</a>
-        <a href="#contact" class="hover:text-pink-400">Contact</a>
-        <button id="theme-toggle" class="ml-4 p-2 rounded bg-gray-700 hover:bg-gray-600 transition">
-          🌙
-        </button>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section id="home" class="fade-section bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900 text-white py-20 transition-colors duration-500">
-    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-6">
-      <!-- Hero Text -->
-      <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
-        <h2 class="text-4xl font-bold mb-4">Welcome to Stream Fusion</h2>
-        <p class="text-lg mb-6">A vibrant platform for seamless integration and modern solutions.</p>
-        <a href="#features" class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold shadow hover:bg-gray-100 transition">Explore Features</a>
-      </div>
-      <!-- Hero Image -->
-      <div class="md:w-1/2 flex justify-center">
-        <img src="logo-1.png" alt="Stream Fusion Logo" class="w-256 h-256 md:w-80 md:h-80 drop-shadow-lg animate-float">
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="fade-section container mx-auto py-16 px-6 text-center">
-    <h2 class="text-3xl font-semibold mb-4">About</h2>
-    <p class="text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto">Stream Fusion is a modern platform designed for enterprise integration, built with scalability and innovation in mind.</p>
-  </section>
-
-  <!-- Features -->
-  <section id="features" class="fade-section bg-gray-100 dark:bg-gray-800 py-16 px-6 transition-colors duration-500">
-    <div class="container mx-auto text-center">
-      <h2 class="text-3xl font-semibold mb-10">Features</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
-          <h3 class="text-xl font-bold mb-2 text-purple-600 dark:text-pink-400">Seamless Integration</h3>
-          <p class="text-gray-600 dark:text-gray-300">Connect all your systems and apps with ease for a unified experience.</p>
+  <body
+    class="font-sans bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 min-h-screen"
+  >
+    <!-- Header: light default, dark variant -->
+    <header
+      class="bg-white text-gray-900 border-b border-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-700"
+    >
+      <div class="container mx-auto flex justify-between items-center p-4">
+        <div class="flex items-center gap-3">
+          <img src="logo-1.png" alt="Stream Fusion Logo" class="w-10 h-10" />
+          <h1 class="text-xl font-bold">Stream Fusion</h1>
         </div>
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
-          <h3 class="text-xl font-bold mb-2 text-purple-600 dark:text-pink-400">Scalable Design</h3>
-          <p class="text-gray-600 dark:text-gray-300">Stream Fusion is built to grow with your business needs effortlessly.</p>
+        <nav class="flex items-center gap-6">
+          <a href="#home" class="hover:text-pink-600 dark:hover:text-pink-400"
+            >Home</a
+          >
+          <a href="#about" class="hover:text-pink-600 dark:hover:text-pink-400"
+            >About</a
+          >
+          <a
+            href="#features"
+            class="hover:text-pink-600 dark:hover:text-pink-400"
+            >Features</a
+          >
+          <a
+            href="#contact"
+            class="hover:text-pink-600 dark:hover:text-pink-400"
+            >Contact</a
+          >
+          <a
+            href="docs.html"
+            target="_blank"
+            rel="noopener"
+            class="hover:text-pink-600 dark:hover:text-pink-400"
+          >
+            Documentation
+          </a>
+
+          <button
+            id="theme-toggle"
+            class="ml-2 p-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 transition"
+            aria-label="Toggle theme"
+            title="Toggle dark/light"
+          >
+            🌙
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section
+      id="home"
+      class="fade-section bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 text-white dark:from-gray-800 dark:via-gray-700 dark:to-gray-900 py-16"
+    >
+      <div
+        class="container mx-auto flex flex-col md:flex-row items-center justify-between px-6"
+      >
+        <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+          <h2 class="text-4xl font-bold mb-3">Welcome to Stream Fusion</h2>
+          <p class="text-lg mb-6">
+            A vibrant platform for seamless integration and modern solutions.
+          </p>
+          <a
+            href="#features"
+            class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold shadow hover:bg-gray-100 transition"
+          >
+            Explore Features
+          </a>
         </div>
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
-          <h3 class="text-xl font-bold mb-2 text-purple-600 dark:text-pink-400">Modern & Vibrant</h3>
-          <p class="text-gray-600 dark:text-gray-300">A clean, colorful, and tech-forward design that represents innovation.</p>
+        <div class="md:w-1/2 flex justify-center">
+          <img
+            src="logo-1.png"
+            alt="Stream Fusion Logo"
+            class="w-64 h-64 md:w-80 md:h-80 drop-shadow-lg"
+          />
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="fade-section py-16 px-6">
-    <div class="container mx-auto text-center">
-      <h2 class="text-3xl font-semibold mb-6">Contact</h2>
-      <p class="mb-4">Have questions? Reach out via email:</p>
-      <a href="mailto:contact@streamfusion.in" class="text-purple-600 dark:text-pink-400 font-semibold hover:underline">contact@streamfusion.in</a>
+    <!-- About -->
+    <section
+      id="about"
+      class="fade-section container mx-auto py-14 px-6 text-center"
+    >
+      <h2 class="text-3xl font-semibold mb-4">About</h2>
+      <p
+        class="text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto"
+      >
+        Stream Fusion is a modern platform designed for enterprise integration,
+        built with scalability and innovation in mind.
+      </p>
+    </section>
 
-      <form class="mt-8 max-w-xl mx-auto text-left bg-white dark:bg-gray-700 p-6 rounded-xl shadow">
-        <div class="mb-4">
-          <label class="block mb-2 font-medium">Name</label>
-          <input type="text" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white" placeholder="Your name">
+    <!-- Features -->
+    <section
+      id="features"
+      class="fade-section bg-gray-100 dark:bg-gray-800 py-16 px-6"
+    >
+      <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-semibold mb-10">Features</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition"
+          >
+            <h3
+              class="text-xl font-bold mb-2 text-purple-600 dark:text-pink-400"
+            >
+              Seamless Integration
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              Connect all your systems and apps with ease for a unified
+              experience.
+            </p>
+          </div>
+          <div
+            class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition"
+          >
+            <h3
+              class="text-xl font-bold mb-2 text-purple-600 dark:text-pink-400"
+            >
+              Scalable Design
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              Stream Fusion is built to grow with your business needs
+              effortlessly.
+            </p>
+          </div>
+          <div
+            class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition"
+          >
+            <h3
+              class="text-xl font-bold mb-2 text-purple-600 dark:text-pink-400"
+            >
+              Modern & Vibrant
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              A clean, colorful, and tech-forward design that represents
+              innovation.
+            </p>
+          </div>
         </div>
-        <div class="mb-4">
-          <label class="block mb-2 font-medium">Email</label>
-          <input type="email" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white" placeholder="Your email">
-        </div>
-        <div class="mb-4">
-          <label class="block mb-2 font-medium">Message</label>
-          <textarea class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white" rows="4" placeholder="Your message"></textarea>
-        </div>
-        <button type="submit" class="bg-purple-600 dark:bg-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-purple-700 dark:hover:bg-pink-600 transition">Send Message</button>
-      </form>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 dark:bg-gray-800 text-white text-center py-4 mt-8">
-    <p>&copy; 2025 Stream Fusion. All rights reserved.</p>
-  </footer>
+    <!-- Contact -->
+    <section id="contact" class="fade-section py-16 px-6">
+      <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-semibold mb-6">Contact</h2>
+        <p class="mb-4">Have questions? Reach out via email:</p>
+        <a
+          href="mailto:contact@streamfusion.in"
+          class="text-purple-600 dark:text-pink-400 font-semibold hover:underline"
+        >
+          contact@streamfusion.in
+        </a>
 
-  <script>
-    // Loader fade-out
-    window.addEventListener('load', () => {
-      const loader = document.getElementById('loader');
-      loader.style.opacity = '0';
-      setTimeout(() => loader.style.display = 'none', 500);
-    });
+        <form
+          class="mt-8 max-w-xl mx-auto text-left bg-white dark:bg-gray-700 p-6 rounded-xl shadow"
+        >
+          <div class="mb-4">
+            <label class="block mb-2 font-medium" for="name">Name</label>
+            <input
+              id="name"
+              type="text"
+              class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white"
+              placeholder="Your name"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="block mb-2 font-medium" for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white"
+              placeholder="Your email"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="block mb-2 font-medium" for="message">Message</label>
+            <textarea
+              id="message"
+              rows="4"
+              class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white"
+              placeholder="Your message"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="bg-purple-600 dark:bg-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-purple-700 dark:hover:bg-pink-600 transition"
+          >
+            Send Message
+          </button>
+        </form>
+      </div>
+    </section>
 
-    // Theme toggle with persistence
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
+    <!-- Footer: light default, dark variant -->
+    <footer
+      class="bg-white text-gray-900 border-t border-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-700 text-center py-4 mt-8"
+    >
+      <p>&copy; 2025 Stream Fusion. All rights reserved.</p>
+    </footer>
 
-    if (localStorage.getItem('theme') === 'dark') {
-      html.classList.add('dark');
-      themeToggle.textContent = '☀️';
-    }
-
-    themeToggle.addEventListener('click', () => {
-      if (html.classList.contains('dark')) {
-        html.classList.remove('dark');
-        themeToggle.textContent = '🌙';
-        localStorage.setItem('theme', 'light');
-      } else {
-        html.classList.add('dark');
-        themeToggle.textContent = '☀️';
-        localStorage.setItem('theme', 'dark');
-      }
-    });
-
-    // Section fade-in on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-section').forEach(section => {
-      observer.observe(section);
-    });
-  </script>
-</body>
+    <!-- Scripts AFTER DOM -->
+    <script src="script.js" defer></script>
+  </body>
 </html>
