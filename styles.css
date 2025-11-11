@@ -44,3 +44,37 @@ header .toplink.is-active {
   background-color: rgba(55, 65, 81, 0.7); /* gray-700/70 */
   color: rgb(249 168 212); /* pink-300 */
 }
+.search-popover {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  margin-top: 0.25rem;
+  max-height: 16rem;
+  overflow: auto;
+  border: 1px solid var(--tw-prose-hr, rgba(0, 0, 0, 0.1));
+  border-radius: 0.5rem;
+  background: var(--tw-bg, #fff);
+  z-index: 40;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+}
+.dark .search-popover {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.search-item {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.search-item:hover,
+.search-item[aria-selected="true"] {
+  background: rgba(236, 72, 153, 0.1); /* pink tint */
+}
+.search-item small {
+  opacity: 0.7;
+}

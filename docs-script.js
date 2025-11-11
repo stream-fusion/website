@@ -286,7 +286,7 @@ setupSimpleButton("btn-latestReleaseNotes");
 sideNav.addEventListener("click", (e) => {
   const a = e.target.closest("a.navlink");
   if (!a) return;
-
+  clearSearchUI();
   e.preventDefault();
   e.stopPropagation();
 
@@ -386,6 +386,8 @@ document.addEventListener("DOMContentLoaded", () => {
 headerLinks.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
+    clearSearchUI();
+
     const h = normalizeHash(link.getAttribute("href"));
 
     // Open sidebar if it's closed
@@ -420,3 +422,479 @@ headerLinks.forEach((link) => {
     }
   });
 });
+
+(function () {
+  const toggleBtn = document.getElementById("mobile-search-toggle");
+  const drawer = document.getElementById("mobile-search");
+  const mobileInput = document.getElementById("mobile-search-input");
+
+  if (!toggleBtn || !drawer) return;
+
+  const open = () => {
+    drawer.style.gridTemplateRows = "1fr";
+    toggleBtn.setAttribute("aria-expanded", "true");
+    setTimeout(() => mobileInput && mobileInput.focus(), 120);
+  };
+
+  const close = () => {
+    drawer.style.gridTemplateRows = "0fr";
+    toggleBtn.setAttribute("aria-expanded", "false");
+  };
+
+  let isOpen = false;
+  const toggle = () =>
+    isOpen ? ((isOpen = false), close()) : ((isOpen = true), open());
+
+  toggleBtn.addEventListener("click", toggle);
+
+  // Close on ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isOpen) toggle();
+  });
+})();
+
+(function () {
+  // Elements
+  const sidebar = document.getElementById("sidebar");
+  const sidebarOpenBtn = document.getElementById("sidebar-open");
+  const searchDesktop = document.getElementById("search-input");
+  const searchMobile = document.getElementById("mobile-search-input");
+
+  // Utility: open sidebar (simulate your existing control)
+  function openSidebar() {
+    if (!sidebar) return;
+    if (sidebar.classList.contains("-translate-x-full")) {
+      // Use the existing button so we keep your logic in sync
+      sidebarOpenBtn && sidebarOpenBtn.click();
+    }
+  }
+
+  // Utility: expand accordions based on where the link lives
+  function expandAccordionsFor(linkEl) {
+    // Tutorials (Parent)
+    if (linkEl.closest("#sub-tutorials")) {
+      const b = document.getElementById("btn-tutorials");
+      b && b.getAttribute("aria-expanded") === "false" && b.click();
+    }
+
+    // Useful Materials (Parent)
+    if (linkEl.closest("#sub-materials")) {
+      const b = document.getElementById("btn-materials");
+      b && b.getAttribute("aria-expanded") === "false" && b.click();
+    }
+
+    // Integrations (Parent)
+    if (linkEl.closest("#sub-integrations")) {
+      const b = document.getElementById("btn-integrations");
+      b && b.getAttribute("aria-expanded") === "false" && b.click();
+    }
+
+    // Integrations → Language Models (Grandchild)
+    if (linkEl.closest("#sub-integrations-lms")) {
+      const b1 = document.getElementById("btn-integrations");
+      const b2 = document.getElementById("btn-integrations-lms");
+      // ensure parent then child
+      b1 && b1.getAttribute("aria-expanded") === "false" && b1.click();
+      b2 && b2.getAttribute("aria-expanded") === "false" && b2.click();
+    }
+  }
+
+  // Utility: smooth scroll to main section id
+  function goToSection(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    // Update hash without jumping instantly
+    history.pushState(null, "", "#" + id);
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // Utility: highlight a nav link and scroll it into view
+  function highlightNav(linkEl) {
+    if (!linkEl) return;
+    linkEl.classList.add("active-nav");
+    linkEl.scrollIntoView({ block: "nearest" });
+    setTimeout(() => linkEl.classList.remove("active-nav"), 1500);
+  }
+
+  // Build index: all anchors that go to sections (#...)
+  // We include top header links and sidebar links
+  function buildIndex() {
+    const anchors = Array.from(document.querySelectorAll('a[href^="#"]'));
+    const items = anchors
+      .map((a) => {
+        const hash = a.getAttribute("href") || "";
+        const id = hash.startsWith("#") ? hash.slice(1) : "";
+        const label = a.textContent.trim().replace(/\s+/g, " ");
+        if (!id || !label) return null;
+
+        // Build a breadcrumb label based on where it lives
+        let breadcrumb = label;
+        if (a.closest("#sub-integrations-lms")) {
+          breadcrumb = "Integrations › Language Models › " + label;
+        } else if (a.closest("#sub-integrations")) {
+          breadcrumb = "Integrations › " + label;
+        } else if (a.closest("#sub-tutorials")) {
+          breadcrumb = "Tutorials › " + label;
+        } else if (a.closest("#sub-materials")) {
+          breadcrumb = "Useful Materials › " + label;
+        }
+        return {
+          id,
+          label,
+          breadcrumb,
+          element: a,
+        };
+      })
+      .filter(Boolean);
+
+    // Also include virtual parent buttons that don't have anchors but map to known section ids
+    const parents = [
+      {
+        id: "Introduction",
+        label: "Introduction",
+        breadcrumb: "Introduction",
+        element: document.querySelector("#btn-introduction"),
+      },
+      {
+        id: "GetStarted",
+        label: "Get Started",
+        breadcrumb: "Get Started",
+        element: document.querySelector("#btn-getStarted"),
+      },
+      {
+        id: "Tutorials",
+        label: "Tutorials",
+        breadcrumb: "Tutorials",
+        element: document.querySelector("#btn-tutorials"),
+      },
+      {
+        id: "Integrations",
+        label: "Integrations",
+        breadcrumb: "Integrations",
+        element: document.querySelector("#btn-integrations"),
+      },
+      {
+        id: "UsefulMaterials",
+        label: "Useful Materials",
+        breadcrumb: "Useful Materials",
+        element: document.querySelector("#btn-materials"),
+      },
+      {
+        id: "LatestReleaseNotes",
+        label: "Latest Release Notes",
+        breadcrumb: "Latest Release Notes",
+        element: document.querySelector("#btn-latestReleaseNotes"),
+      },
+    ];
+    parents.forEach((p) => items.push(p));
+
+    return items;
+  }
+
+  const index = buildIndex();
+
+  // Create a dropdown under a container (the "relative" wrapper of the input)
+  function ensurePopover(inputEl) {
+    if (!inputEl) return null;
+    const wrapper = inputEl.parentElement; // it's inside a relative container
+    if (!wrapper) return null;
+    let pop = wrapper.querySelector(".search-popover");
+    if (!pop) {
+      pop = document.createElement("div");
+      pop.className = "search-popover";
+      pop.setAttribute("role", "listbox");
+      pop.style.display = "none";
+      wrapper.appendChild(pop);
+    }
+    return pop;
+  }
+
+  function renderResults(popover, results, query) {
+    if (!popover) return;
+    popover.innerHTML = "";
+    if (!results.length) {
+      const empty = document.createElement("div");
+      empty.className = "search-item";
+      empty.textContent = query ? "No matches" : "Type to search…";
+      empty.setAttribute("aria-disabled", "true");
+      popover.appendChild(empty);
+      return;
+    }
+    results.forEach((r, i) => {
+      const item = document.createElement("div");
+      item.className = "search-item";
+      item.setAttribute("role", "option");
+      item.setAttribute("data-id", r.id);
+      item.innerHTML = `<i class="fa-solid fa-arrow-right"></i> <span>${r.label}</span> <small>— ${r.breadcrumb}</small>`;
+      if (i === 0) item.setAttribute("aria-selected", "true");
+      popover.appendChild(item);
+    });
+  }
+
+  function filterIndex(q) {
+    const query = q.trim().toLowerCase();
+    if (!query) return [];
+    // basic scoring: label startsWith > includes; breadcrumb includes
+    const scored = index
+      .map((it) => {
+        const l = it.label.toLowerCase();
+        const b = it.breadcrumb.toLowerCase();
+        let score = -Infinity;
+        if (l.startsWith(query)) score = 100 - (l.length - query.length);
+        else if (l.includes(query)) score = 70 - l.indexOf(query);
+        else if (b.includes(query)) score = 40 - b.indexOf(query);
+        return { it, score };
+      })
+      .filter((s) => s.score > -Infinity);
+    scored.sort((a, b) => b.score - a.score);
+    return scored.slice(0, 8).map((s) => s.it);
+  }
+
+  /*************************
+   * Helper: set nav active by hash (clears others)
+   *************************/
+  // Simple section hashes that correspond to BUTTONS (no <a.navlink>)
+  const HASH_TO_SIMPLE_BTN = {
+    "#Introduction": "btn-introduction",
+    "#GetStarted": "btn-getStarted",
+    "#LatestReleaseNotes": "btn-latestReleaseNotes",
+  };
+
+  // Ensure the right thing is active in the sidebar for any hash
+  function setNavActiveByHash(hash) {
+    const h = normalizeHash(hash);
+
+    // 1) Clear current states
+    clearAllLinkActive();
+    clearAllGroupActive();
+
+    // 2) If there is a real sidebar link, highlight it and keep its chain open
+    const link = sideNav.querySelector(`a.navlink[href="${h}"]`);
+    if (link) {
+      // Keep only this link’s ancestor groups open
+      const panel = link.closest('ul[id^="sub-"]');
+      const keepBtns = [];
+      if (panel) {
+        const thisBtn = getButtonForPanel(panel);
+        if (thisBtn) keepBtns.push(thisBtn);
+        keepBtns.push(...getAncestorButtons(panel));
+        closeAllGroups(keepBtns);
+        openPanelChain(panel);
+        if (keepBtns[0]) setGroupActive(keepBtns[0], true);
+      } else {
+        closeAllGroups();
+      }
+
+      link.classList.add("is-active", ...ACTIVE_BG);
+      link.setAttribute("aria-current", "page");
+      return;
+    }
+
+    // 3) Otherwise it's a "simple" section → highlight its BUTTON
+    const btnId = HASH_TO_SIMPLE_BTN[h];
+    const btn = btnId ? document.getElementById(btnId) : null;
+    if (btn) {
+      closeAllGroups(btn);
+      setGroupActive(btn, true);
+      return;
+    }
+
+    // 4) As a fallback, if it’s a top-level group hash, keep that group open/active
+    const grp = HASH_TO_GROUP[h];
+    if (grp) {
+      const gbtn = document.getElementById(grp.btn);
+      const gpanel = document.getElementById(grp.panel);
+      if (gbtn && gpanel) {
+        closeAllGroups([gbtn, ...getAncestorButtons(gpanel)]);
+        openPanelChain(gpanel);
+        setGroupActive(gbtn, true);
+      }
+    }
+  }
+
+  // Handle selection: open side, expand accordions, highlight, go to section
+  function selectItem(item) {
+    if (!item) return;
+
+    // Open sidebar if closed (keeps your logic)
+    openSidebar();
+
+    const h = `#${item.id}`;
+
+    // If the index entry came from a real anchor, expand its parents
+    if (item.element instanceof HTMLElement) {
+      const linkEl = item.element;
+      expandAccordionsFor(linkEl);
+
+      // Keep its ancestor buttons open, close the rest
+      const panel = linkEl.closest('ul[id^="sub-"]');
+      const keepBtns = [];
+      if (panel) {
+        const thisBtn = getButtonForPanel(panel);
+        if (thisBtn) keepBtns.push(thisBtn);
+        keepBtns.push(...getAncestorButtons(panel));
+      }
+      closeAllGroups(keepBtns);
+      if (panel) openPanelChain(panel);
+    } else {
+      // Virtual parent (no real anchor) – open relevant top-level group
+      if (item.id === "Tutorials") {
+        const b = document.getElementById("btn-tutorials");
+        b && b.getAttribute("aria-expanded") === "false" && b.click();
+      }
+      if (item.id === "Integrations") {
+        const b = document.getElementById("btn-integrations");
+        b && b.getAttribute("aria-expanded") === "false" && b.click();
+      }
+      if (item.id === "UsefulMaterials") {
+        const b = document.getElementById("btn-materials");
+        b && b.getAttribute("aria-expanded") === "false" && b.click();
+      }
+      // When choosing a virtual parent, we still want to clear link actives
+      clearAllLinkActive();
+    }
+
+    // Route + sync UI everywhere
+    if (location.hash !== h) history.pushState({ hash: h }, "", h);
+    navigateToHash(h); // show section
+    setHeaderActive(h); // header highlight
+    setNavActiveByHash(h); // sidebar: select one, unselect others
+
+    // Optional: brief visual pulse on the chosen link
+    const link = sideNav.querySelector(`a.navlink[href="${normalizeHash(h)}"]`);
+    link &&
+      (link.classList.add("active-nav"),
+      link.scrollIntoView({ block: "nearest" }),
+      setTimeout(() => link.classList.remove("active-nav"), 1500));
+  }
+
+  function attachSearch(inputEl) {
+    if (!inputEl) return;
+    const pop = ensurePopover(inputEl);
+    let open = false;
+    let activeIndex = 0;
+    let current = [];
+
+    const openPop = () => {
+      if (pop) pop.style.display = "block";
+      open = true;
+    };
+    const closePop = () => {
+      if (pop) pop.style.display = "none";
+      open = false;
+    };
+
+    function update() {
+      const q = inputEl.value;
+      current = filterIndex(q);
+      renderResults(pop, current, q);
+      if (!q) {
+        closePop();
+        return;
+      }
+      openPop();
+      activeIndex = 0;
+      updateSelection();
+    }
+
+    function updateSelection() {
+      if (!pop) return;
+      const items = Array.from(
+        pop.querySelectorAll('.search-item[role="option"]')
+      );
+      items.forEach((el, i) =>
+        el.setAttribute("aria-selected", i === activeIndex ? "true" : "false")
+      );
+    }
+
+    function pick(i) {
+      const item = current[i];
+      if (!item) return;
+      selectItem(item);
+      inputEl.blur();
+      closePop();
+    }
+
+    inputEl.addEventListener("input", update);
+    inputEl.addEventListener("focus", () => {
+      if (inputEl.value.trim()) update();
+    });
+    document.addEventListener("click", (e) => {
+      if (!pop) return;
+      if (!pop.contains(e.target) && e.target !== inputEl) closePop();
+    });
+
+    // Mouse click on results
+    pop &&
+      pop.addEventListener("click", (e) => {
+        const itemEl = e.target.closest('.search-item[role="option"]');
+        if (!itemEl) return;
+        const id = itemEl.getAttribute("data-id");
+        const i = current.findIndex((x) => x.id === id);
+        if (i >= 0) pick(i);
+      });
+
+    // Keyboard navigation
+    inputEl.addEventListener("keydown", (e) => {
+      if (!open) return;
+      const items = pop
+        ? Array.from(pop.querySelectorAll('.search-item[role="option"]'))
+        : [];
+      const max = items.length - 1;
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        activeIndex = Math.min(max, activeIndex + 1);
+        updateSelection();
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        activeIndex = Math.max(0, activeIndex - 1);
+        updateSelection();
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        pick(activeIndex);
+      } else if (e.key === "Escape") {
+        closePop();
+      }
+    });
+  }
+
+  attachSearch(searchDesktop);
+  attachSearch(searchMobile);
+})();
+
+/*************************
+ * Helper: clear search UI (only if there's text)
+ *************************/
+function clearSearchUI() {
+  const desktop = document.getElementById("search-input");
+  const mobile = document.getElementById("mobile-search-input");
+
+  const inputs = [desktop, mobile].filter(Boolean);
+  const hasText = inputs.some((i) => i.value && i.value.trim().length);
+
+  if (!hasText) return; // nothing to do
+
+  // clear text
+  inputs.forEach((i) => (i.value = ""));
+
+  // hide any open popovers
+  inputs.forEach((i) => {
+    const pop = i.parentElement?.querySelector(".search-popover");
+    if (pop) {
+      pop.style.display = "none";
+      pop.innerHTML = "";
+    }
+  });
+
+  // close mobile search drawer if open
+  const drawer = document.getElementById("mobile-search");
+  const toggleBtn = document.getElementById("mobile-search-toggle");
+  if (
+    drawer &&
+    drawer.style.gridTemplateRows &&
+    drawer.style.gridTemplateRows !== "0fr"
+  ) {
+    drawer.style.gridTemplateRows = "0fr";
+    toggleBtn?.setAttribute("aria-expanded", "false");
+  }
+}
