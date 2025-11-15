@@ -308,6 +308,14 @@
         >
           <span class="font-semibold">Latest Release Note</span>
         </button>
+        <button
+          id="btn-license-download"
+          class="w-full flex items-center justify-between px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+          aria-expanded="false"
+          aria-controls="sub-latestReleaseNotes"
+        >
+          <span class="font-semibold">Terms & Conditions</span>
+        </button>
         <!-- <a
           class="navlink block px-3 py-2 rounded hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-gray-700 dark:hover:text-pink-400"
           href="#LatestReleaseNotes"
@@ -370,6 +378,11 @@
                   href="#LatestReleaseNotes"
                   class="toplink text-sm lg:text-base font-semibold"
                   >Latest Release Notes</a
+                >
+                <a
+                  href="#license-download"
+                  class="toplink text-sm lg:text-base font-semibold"
+                  >Terms & Conditions</a
                 >
               </nav>
             </div>
@@ -1834,6 +1847,167 @@ CLIENT_SECRET = "your-super-secret-key"</pre
                   </li>
                 </ul>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== License / Download / Trial (single-page, no textarea) ===== -->
+        <section id="license-download" class="content-section">
+          <div class="space-y-6">
+            <!-- License & Terms -->
+            <div
+              class="bg-white dark:bg-gray-800 p-5 rounded-lg border dark:border-gray-700 shadow-sm"
+            >
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <h3 class="text-lg font-semibold">Terms &amp; Conditions</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                    These terms govern the use of the Stream Fusion Studio
+                    product and related documentation. Replace the text below
+                    with your final legal wording.
+                  </p>
+                </div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">
+                  Version: <strong>1.0</strong><br />
+                  Effective: <strong>2025-11-15</strong>
+                </div>
+              </div>
+
+              <div
+                class="mt-4 text-sm text-gray-700 dark:text-gray-300 space-y-2"
+              >
+                <p>
+                  <strong>Allowed usage:</strong> The license grants the
+                  Licensee a non-exclusive, non-transferable right to install
+                  and use Stream Fusion Studio for internal business purposes
+                  subject to the terms below.
+                </p>
+
+                <p>
+                  <strong>Restrictions:</strong> Do not redistribute, publicly
+                  share, or embed the product binaries or secrets. Reverse
+                  engineering and removal of license metadata is prohibited.
+                </p>
+
+                <p>
+                  <strong>Data handling & privacy:</strong> Your organization
+                  owns its data. The product may collect anonymized telemetry to
+                  improve quality (opt-out available in Settings).
+                </p>
+
+                <p>
+                  <strong>Liability:</strong> The provider’s liability is
+                  limited to direct damages up to the total license fees paid in
+                  the preceding 12 months. No indirect, incidental or
+                  consequential damages.
+                </p>
+
+                <p class="text-xs text-gray-500 dark:text-gray-400">
+                  Replace the above with your organization's final legal terms.
+                  This is a sample/placeholder only.
+                </p>
+              </div>
+            </div>
+
+            <!-- How to download Studio -->
+            <div
+              class="bg-white dark:bg-gray-800 p-5 rounded-lg border dark:border-gray-700 shadow-sm"
+            >
+              <h3 class="text-lg font-semibold">
+                How to download Stream Fusion Studio
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                Follow these steps to get the latest Studio installer and start
+                using the product.
+              </p>
+
+              <ol
+                class="list-decimal ml-5 mt-3 text-sm text-gray-700 dark:text-gray-300 space-y-2"
+              >
+                <li>
+                  <strong>Visit the download portal</strong> — authorized
+                  customers will receive a download link after licensing.
+                  (Contact support if you don't have the link.)
+                </li>
+                <li>
+                  <strong>Choose build</strong> — select the platform installer
+                  (Windows .msi, macOS .dmg, Linux .tar.gz).
+                </li>
+                <li>
+                  <strong>Verify checksum</strong> — after download validate the
+                  SHA256 checksum published with the release notes to ensure
+                  integrity.
+                </li>
+                <li>
+                  <strong>Install</strong> — run the installer and follow the
+                  on-screen steps. On Linux extract and run the included
+                  launcher scripts.
+                </li>
+                <li>
+                  <strong>Activate</strong> — open Studio, paste your License ID
+                  (or use organization SSO), and click Activate.
+                </li>
+                <li>
+                  <strong>First-run checks</strong> — verify outbound network
+                  access (graph.microsoft.com or SMTP hosts) if you will use
+                  integrations.
+                </li>
+              </ol>
+
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">
+                Tip: If you need an offline installer or corporate repo package,
+                contact support to request enterprise bundles.
+              </p>
+            </div>
+
+            <!-- Early Access Trial License -->
+
+            <!-- Missing / Recommended items checklist -->
+            <div
+              class="bg-white dark:bg-gray-800 p-5 rounded-lg border dark:border-gray-700 shadow-sm"
+            >
+              <h3 class="text-lg font-semibold">
+                Checklist — Items you may want to add to docs
+              </h3>
+
+              <ul
+                class="list-disc ml-5 mt-3 text-sm text-gray-700 dark:text-gray-300 space-y-2"
+              >
+                <li>
+                  <strong>Release notes & changelog</strong> (per-version
+                  behavior and breaking changes).
+                </li>
+                <li>
+                  <strong>Supported platform matrix</strong> (OS versions,
+                  Java/Node runtimes if applicable).
+                </li>
+                <li>
+                  <strong>Network & firewall requirements</strong> (domains,
+                  ports for Graph, SMTP, telemetry).
+                </li>
+                <li>
+                  <strong>Secrets management guidance</strong> (samples using
+                  Azure Key Vault or environment variables).
+                </li>
+                <li>
+                  <strong>Backup / restore</strong> and config export/import
+                  instructions.
+                </li>
+                <li>
+                  <strong>Onboarding & quick start</strong> — 3-step quickstart
+                  guide to run the first flow.
+                </li>
+                <li>
+                  <strong>Contact & escalation</strong> — support email/phone,
+                  business hours, and SLA expectations.
+                </li>
+              </ul>
+
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">
+                If you want, I can generate any of these items as full sections
+                (Release Notes template, Quickstart, Network requirements,
+                etc.).
+              </p>
             </div>
           </div>
         </section>

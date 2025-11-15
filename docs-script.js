@@ -156,6 +156,8 @@ const BTN_TO_HASH = {
   "btn-addOns": "#addOns",
   "btn-materials": "#UsefulMaterials",
   "btn-latestReleaseNotes": "#LatestReleaseNotes",
+  "btn-license-download": "#license-download",
+
   // Add nested group buttons if you want them to set a hash as well:
   // "btn-addOns-lms": "#addOns-LMs",
   // "btn-addOns-lms-openai": "#addOns-LMs-OpenAI",
@@ -291,6 +293,7 @@ setupAccordion("btn-addOns-lms-openai", "sub-addOns-lms-openai");
 setupSimpleButton("btn-introduction");
 setupSimpleButton("btn-getStarted");
 setupSimpleButton("btn-latestReleaseNotes");
+setupSimpleButton("btn-license-download");
 
 /*************************
  * Submenu link clicks (keep chain open, highlight one)
@@ -597,6 +600,12 @@ headerLinks.forEach((link) => {
         breadcrumb: "Latest Release Notes",
         element: document.querySelector("#btn-latestReleaseNotes"),
       },
+      {
+        id: "license-download",
+        label: "Terms & Conditions",
+        breadcrumb: "Terms & Conditions",
+        element: document.querySelector("#btn-license-download"),
+      },
     ];
     parents.forEach((p) => items.push(p));
 
@@ -670,6 +679,7 @@ headerLinks.forEach((link) => {
     "#Introduction": "btn-introduction",
     "#GetStarted": "btn-getStarted",
     "#LatestReleaseNotes": "btn-latestReleaseNotes",
+    "#license-download": "btn-license-download",
   };
 
   // Ensure the right thing is active in the sidebar for any hash
@@ -910,3 +920,24 @@ function clearSearchUI() {
     toggleBtn?.setAttribute("aria-expanded", "false");
   }
 }
+
+(function () {
+  const copy = (text) =>
+    navigator.clipboard
+      ?.writeText(text)
+      .then(() => alert("Copied to clipboard"))
+      .catch(() => alert("Copy failed"));
+  document
+    .getElementById("copy-license-id")
+    ?.addEventListener("click", () => copy("LIC-TRIAL-2025-0001"));
+  document
+    .getElementById("copy-trial-sample")
+    ?.addEventListener("click", () =>
+      copy(
+        "Requesting Early Access Trial - Company: [Your Company] - Contact: [Name/Email] - Seats: 5 - Use case: Evaluation"
+      )
+    );
+  document
+    .getElementById("copy-license-sample")
+    ?.addEventListener("click", () => copy("LIC-TRIAL-2025-0001"));
+})();
