@@ -545,9 +545,9 @@ headerLinks.forEach((link) => {
         // Build a breadcrumb label based on where it lives
         let breadcrumb = label;
         if (a.closest("#sub-addOns-lms")) {
-          breadcrumb = "addOns › Language Models › " + label;
+          breadcrumb = "Add On › Language Models › " + label;
         } else if (a.closest("#sub-addOns")) {
-          breadcrumb = "addOns › " + label;
+          breadcrumb = "Add On › " + label;
         } else if (a.closest("#sub-tutorials")) {
           breadcrumb = "Tutorials › " + label;
         } else if (a.closest("#sub-materials")) {
@@ -613,6 +613,73 @@ headerLinks.forEach((link) => {
   }
 
   const index = buildIndex();
+
+  const breadcrumbBox = document.getElementById("breadcrumb");
+
+  function updateBreadcrumb(text) {
+    // simple breadcrumb with Home icon linking to index.html
+    breadcrumbBox.innerHTML = `
+      <a href="index.html" class="flex items-center cursor-pointer" aria-label="Home">
+        <i class="fa-solid fa-house text-sm" style="cursor:pointer"></i>
+      </a>
+      <span class="mx-2">›</span>
+      <span class="font-medium">${text}</span>
+    `;
+  }
+
+  function findItemById(id) {
+    if (!id) return null;
+    return index.find((it) => it && it.id === id) || null;
+  }
+
+  // Determine the current id from the URL hash or fallback
+  function computeCurrentId() {
+    // prefer location.hash if present
+    if (location.hash && location.hash.startsWith("#")) {
+      return location.hash.slice(1);
+    }
+
+    // if you want to pick a different default, change below
+    return "Introduction";
+  }
+
+  // Set breadcrumb for current state (call on load & when hash changes)
+  function refreshBreadcrumbFromLocation() {
+    const id = computeCurrentId();
+    const matched = findItemById(id);
+
+    if (matched) {
+      updateBreadcrumb(matched.breadcrumb || matched.label);
+    } else {
+      // fallback: show id nicely (or show "Home")
+      updateBreadcrumb(id || "Home");
+    }
+  }
+
+  // Initialize: update breadcrumb now
+  document.addEventListener("DOMContentLoaded", () => {
+    // initial render
+    refreshBreadcrumbFromLocation();
+
+    // attach click handlers to items if you want to update breadcrumb immediately
+    // (useful if you prevent default navigation and do your own scrolling)
+    index.forEach((item) => {
+      if (!item || !item.element) return;
+
+      item.element.addEventListener("click", (ev) => {
+        // let default behavior update the hash/scroll; still update breadcrumb instantly
+        updateBreadcrumb(item.breadcrumb || item.label);
+
+        // optional: if you want smooth scroll and prevent default:
+        // ev.preventDefault();
+        // document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
+        // location.hash = '#' + item.id; // keep URL in sync
+      });
+    });
+
+    // handle back/forward and manual URL changes
+    window.addEventListener("hashchange", refreshBreadcrumbFromLocation);
+  });
 
   // Create a dropdown under a container (the "relative" wrapper of the input)
   function ensurePopover(inputEl) {
