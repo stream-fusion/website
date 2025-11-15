@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Stream Fusion – Sidebar Toggle</title>
+    <title>Stream Fusion</title>
 
     <!-- Font Awesome -->
     <link
@@ -182,15 +182,15 @@
           </ul>
         </div>
 
-        <!-- Integrations (accordion) -->
+        <!-- addOns (accordion) -->
         <div class="my-1">
           <button
-            id="btn-integrations"
+            id="btn-addOns"
             class="w-full flex items-center justify-between px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
             aria-expanded="false"
-            aria-controls="sub-integrations"
+            aria-controls="sub-addOns"
           >
-            <span class="font-semibold">Integrations</span>
+            <span class="font-semibold">Add Ons</span>
             <i
               class="fa-solid fa-angle-right transition-transform duration-200"
               data-chevron
@@ -198,16 +198,16 @@
           </button>
 
           <ul
-            id="sub-integrations"
+            id="sub-addOns"
             class="mt-1 ml-2 pl-3 border-l border-gray-200 dark:border-gray-700 space-y-1 hidden"
           >
             <!-- CHILD LEVEL -->
             <li>
               <button
-                id="btn-integrations-lms"
+                id="btn-addOns-lms"
                 class="w-full flex items-center justify-between px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
                 aria-expanded="false"
-                aria-controls="sub-integrations-lms"
+                aria-controls="sub-addOns-lms"
               >
                 <span>Language Models</span>
                 <i
@@ -218,7 +218,7 @@
 
               <!-- GRANDCHILD LEVEL -->
               <ul
-                id="sub-integrations-lms"
+                id="sub-addOns-lms"
                 class="mt-1 ml-3 pl-3 border-l border-gray-200 dark:border-gray-700 space-y-1 hidden"
               >
                 <li>
@@ -248,24 +248,24 @@
             <!-- OTHER CHILDREN (No Change Needed) -->
             <li>
               <a
-                href="#SmtpSendEmailOperation"
+                href="#SmtpSendEmail"
                 class="navlink block px-2 py-1 rounded hover:bg-pink-50 dark:hover:bg-gray-700"
-                >Smtp Send Email Operation</a
-              >
+                >Smtp Send Email
+              </a>
             </li>
             <li>
               <a
-                href="#SendOutlookEmailOperation"
+                href="#SendOutlookEmail"
                 class="navlink block px-2 py-1 rounded hover:bg-pink-50 dark:hover:bg-gray-700"
-                >Send Outlook Email Operation</a
-              >
+                >Send Outlook Email
+              </a>
             </li>
             <li>
               <a
-                href="#ReadOutlookEmailOperation"
+                href="#ReadOutlookEmail"
                 class="navlink block px-2 py-1 rounded hover:bg-pink-50 dark:hover:bg-gray-700"
-                >Read Outlook Email Operation</a
-              >
+                >Read Outlook Email
+              </a>
             </li>
             <!-- ... keep rest same ... -->
           </ul>
@@ -357,9 +357,9 @@
                   >Tutorials</a
                 >
                 <a
-                  href="#Integrations"
+                  href="#addOns"
                   class="toplink text-sm lg:text-base font-semibold"
-                  >Integrations</a
+                  >Add Ons</a
                 >
                 <a
                   href="#UsefulMaterials"
@@ -433,10 +433,10 @@
       </header>
 
       <!-- ======== MAIN: all sections live here; JS shows/hides them ======== -->
-      <main id="main" class="p-6 space-y-6">
+      <main id="main" class="p-6 space-y-6 overflow-auto flex-1">
         <!-- Introduction -->
         <section id="Introduction" class="content-section">
-          <h2 class="text-2xl font-semibold">Introduction</h2>
+          <h6 class="text-2xl font-semibold">Introduction</h6>
           <p class="mt-2 opacity-90">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit
             amet tincidunt nulla. Aliquam erat volutpat. Praesent eget luctus
@@ -450,7 +450,7 @@
 
         <!-- Get Started -->
         <section id="GetStarted" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Get Started</h2>
+          <h6 class="text-2xl font-semibold">Get Started</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
             consectetur imperdiet sem, at varius ligula dictum eget.
@@ -463,16 +463,16 @@
 
         <!-- Tutorials -->
         <section id="Tutorials" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Tutorials</h2>
+          <h6 class="text-2xl font-semibold">Tutorials</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
             maximus urna nec arcu maximus, a semper lorem pulvinar.
           </p>
         </section>
 
-        <!-- Integrations -->
-        <section id="Integrations" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Integrations</h2>
+        <!-- addOns -->
+        <section id="addOns" class="content-section hidden">
+          <h6 class="text-2xl font-semibold">Add Ons</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
             suscipit convallis nibh, non tristique metus placerat at.
@@ -481,7 +481,7 @@
 
         <!-- Useful Materials -->
         <section id="UsefulMaterials" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Useful Materials</h2>
+          <h6 class="text-2xl font-semibold">Useful Materials</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
             euismod lorem eu ante elementum, et accumsan arcu porttitor.
@@ -490,7 +490,7 @@
 
         <!-- Latest Release Notes -->
         <section id="LatestReleaseNotes" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Latest Release Notes</h2>
+          <h6 class="text-2xl font-semibold">Latest Release Notes</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut
             imperdiet nulla. Donec tempus efficitur libero.
@@ -499,7 +499,7 @@
 
         <!-- Chat and Language Models -->
         <section id="ChatLanguageModels" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Chat and Language Models</h2>
+          <h6 class="text-2xl font-semibold">Chat and Language Models</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed
             convallis nisl. Pellentesque habitant morbi tristique senectus et
@@ -509,7 +509,7 @@
 
         <!-- Chat Memory -->
         <section id="ChatMemory" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Chat Memory</h2>
+          <h6 class="text-2xl font-semibold">Chat Memory</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta,
             diam ac tincidunt porttitor, mi elit gravida tortor, vitae
@@ -519,7 +519,7 @@
 
         <!-- Model Parameters -->
         <section id="ModelParameters" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Model Parameters</h2>
+          <h6 class="text-2xl font-semibold">Model Parameters</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a
             diam felis. Suspendisse luctus, mauris eget tincidunt tempus.
@@ -528,7 +528,7 @@
 
         <!-- Response Streaming -->
         <section id="ResponseStreaming" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Response Streaming</h2>
+          <h6 class="text-2xl font-semibold">Response Streaming</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
             facilisi. Donec interdum ligula vitae nisi ultricies gravida.
@@ -537,7 +537,7 @@
 
         <!-- AI Services -->
         <section id="AIServices" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">AI Services</h2>
+          <h6 class="text-2xl font-semibold">AI Services</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id
             condimentum mi, nec vulputate dui.
@@ -546,7 +546,7 @@
 
         <!-- Agents and Agentic AI -->
         <section id="Agents" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Agents and Agentic AI</h2>
+          <h6 class="text-2xl font-semibold">Agents and Agentic AI</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Pellentesque egestas feugiat lectus ut semper.
@@ -555,7 +555,7 @@
 
         <!-- Tools (Function Calling) -->
         <section id="Tools" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Tools (Function Calling)</h2>
+          <h6 class="text-2xl font-semibold">Tools (Function Calling)</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
             pellentesque ultrices orci.
@@ -564,9 +564,9 @@
 
         <!-- RAG -->
         <section id="RAG" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">
+          <h6 class="text-2xl font-semibold">
             RAG (Retrieval-Augmented Generation)
-          </h2>
+          </h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
             non dapibus elit.
@@ -575,7 +575,7 @@
 
         <!-- Structured Outputs -->
         <section id="StructuredOutputs" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Structured Outputs</h2>
+          <h6 class="text-2xl font-semibold">Structured Outputs</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
             cursus nunc ac massa finibus.
@@ -584,7 +584,7 @@
 
         <!-- Guardrails -->
         <section id="Guardrails" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Guardrails</h2>
+          <h6 class="text-2xl font-semibold">Guardrails</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae
             facilisis ipsum.
@@ -593,7 +593,7 @@
 
         <!-- Classification -->
         <section id="Classification" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Classification</h2>
+          <h6 class="text-2xl font-semibold">Classification</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
             at luctus nisl.
@@ -602,7 +602,7 @@
 
         <!-- Embedding (Vector) Stores -->
         <section id="EmbeddingStores" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Embedding (Vector) Stores</h2>
+          <h6 class="text-2xl font-semibold">Embedding (Vector) Stores</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             eget luctus tortor.
@@ -611,30 +611,30 @@
 
         <!-- Image Models -->
         <section id="ImageModels" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Image Models</h2>
+          <h6 class="text-2xl font-semibold">Image Models</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id
             eros laoreet, convallis dui et, pellentesque sem.
           </p>
         </section>
 
-        <!-- Integrations: Language Models Submenu -->
+        <!-- addOns: Language Models Submenu -->
         <section id="OpenAI" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">OpenAI</h2>
+          <h6 class="text-2xl font-semibold">OpenAI</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
         </section>
 
         <section id="Google" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Google</h2>
+          <h6 class="text-2xl font-semibold">Google</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
         </section>
 
         <section id="Anthropic" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Anthropic</h2>
+          <h6 class="text-2xl font-semibold">Anthropic</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
@@ -642,55 +642,1200 @@
 
         <!-- Useful Materials Submenu -->
         <section id="UIKits" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">UI Kits Overview</h2>
+          <h6 class="text-2xl font-semibold">UI Kits Overview</h6>
           <p class="mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel
             leo ac justo gravida bibendum.
           </p>
         </section>
 
-        <!-- Smtp Send Email Operation -->
-        <section id="SmtpSendEmailOperation" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">SMTP Send Email Operation</h2>
-          <p class="mt-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit
-            amet lectus lorem. Vivamus aliquam, justo sit amet sodales
-            hendrerit, sapien neque interdum ex, vitae feugiat tortor ipsum et
-            lorem.
-          </p>
-          <p class="mt-2">
-            Integer quis elit eget lectus cursus tincidunt. Suspendisse potenti.
-            Sed faucibus vulputate ante at volutpat. Aenean hendrerit lorem sed
-            nisl volutpat facilisis.
-          </p>
+        <!-- Smtp Send Email  -->
+        <section id="SmtpSendEmail" class="content-section">
+          <!-- Theme-aware, scrollable full documentation (Tailwind) -->
+          <div
+            id="smtp-doc-root"
+            class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200"
+          >
+            <div class="p-4 md:p-6">
+              <header class="flex items-start justify-between gap-4 mb-4">
+                <div>
+                  <h6 class="text-2xl font-semibold">
+                    SMTP Send Email — Documentation
+                  </h6>
+                  <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">
+                    Complete guide — configuration, examples, testing and
+                    troubleshooting.
+                  </p>
+                </div>
+              </header>
+
+              <div
+                class="bg-white dark:bg-gray-800 rounded-lg shadow border dark:border-gray-700 overflow-hidden"
+              >
+                <!-- Top summary (non-scrolling) -->
+                <div class="p-4 md:p-6 border-b dark:border-gray-700">
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div
+                      class="p-3 rounded border bg-gray-50 dark:bg-gray-900/40"
+                    >
+                      <h3 class="font-semibold">What it does</h3>
+                      <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                        Send messages via an SMTP server using the module inputs
+                        and credentials.
+                      </p>
+                    </div>
+                    <div
+                      class="p-3 rounded border bg-gray-50 dark:bg-gray-900/40"
+                    >
+                      <h3 class="font-semibold">Recommended</h3>
+                      <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                        Port 587 (STARTTLS). Use App Passwords if 2FA is
+                        enabled.
+                      </p>
+                    </div>
+                    <div
+                      class="p-3 rounded border bg-gray-50 dark:bg-gray-900/40"
+                    >
+                      <h3 class="font-semibold">Before you start</h3>
+                      <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                        Have SMTP host, port, username and password ready;
+                        confirm outbound port access.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Scrollable content area -->
+                <div
+                  class="p-4 md:p-6"
+                  tabindex="0"
+                  role="region"
+                  aria-label="SMTP documentation"
+                >
+                  <!-- Nav anchors -->
+                  <nav class="mb-4 flex gap-2 flex-wrap">
+                    <a
+                      href="#smtp-overview"
+                      class="px-3 py-1 rounded bg-blue-50 dark:bg-gray-700 text-xs"
+                      >Overview</a
+                    >
+                    <a
+                      href="#smtp-fields"
+                      class="px-3 py-1 rounded bg-blue-50 dark:bg-gray-700 text-xs"
+                      >Fields</a
+                    >
+                    <a
+                      href="#smtp-examples"
+                      class="px-3 py-1 rounded bg-blue-50 dark:bg-gray-700 text-xs"
+                      >Examples</a
+                    >
+                    <a
+                      href="#smtp-test"
+                      class="px-3 py-1 rounded bg-blue-50 dark:bg-gray-700 text-xs"
+                      >Test</a
+                    >
+                    <a
+                      href="#smtp-troubleshoot"
+                      class="px-3 py-1 rounded bg-blue-50 dark:bg-gray-700 text-xs"
+                      >Troubleshoot</a
+                    >
+                    <a
+                      href="#smtp-faq"
+                      class="px-3 py-1 rounded bg-blue-50 dark:bg-gray-700 text-xs"
+                      >FAQ</a
+                    >
+                  </nav>
+
+                  <!-- Content -->
+                  <section id="smtp-overview" class="mb-6">
+                    <h4 class="text-lg font-semibold">Overview</h4>
+                    <p class="mt-2 text-gray-700 dark:text-gray-300">
+                      The SMTP Send Email module enables workflows to send
+                      emails via any SMTP-compliant mail server. Supports
+                      HTML/plain text via a rich-text editor.
+                    </p>
+                  </section>
+
+                  <section id="smtp-fields" class="mb-6">
+                    <h4 class="text-lg font-semibold">Fields (explained)</h4>
+                    <dl class="mt-3 space-y-3 text-gray-700 dark:text-gray-300">
+                      <div>
+                        <dt class="font-semibold">
+                          From Email
+                          <span class="text-sm text-gray-500 dark:text-gray-400"
+                            >(required)</span
+                          >
+                        </dt>
+                        <dd class="mt-1">
+                          Sender address — match SMTP account for best
+                          deliverability.
+                        </dd>
+                      </div>
+                      <div>
+                        <dt class="font-semibold">
+                          To Email
+                          <span class="text-sm text-gray-500 dark:text-gray-400"
+                            >(required)</span
+                          >
+                        </dt>
+                        <dd class="mt-1">
+                          Recipient address. Multiple recipients: separate by
+                          comma if supported.
+                        </dd>
+                      </div>
+                      <div>
+                        <dt class="font-semibold">Subject</dt>
+                        <dd class="mt-1">Message subject.</dd>
+                      </div>
+                      <div>
+                        <dt class="font-semibold">Body</dt>
+                        <dd class="mt-1">
+                          Rich-text/HTML supported. Test across email clients.
+                        </dd>
+                      </div>
+                      <div>
+                        <dt class="font-semibold">SMTP Host</dt>
+                        <dd class="mt-1">
+                          e.g.,
+                          <code
+                            class="bg-gray-100 dark:bg-gray-700 px-1 rounded\"
+                            >smtp.gmail.com</code
+                          >.
+                        </dd>
+                      </div>
+                      <div>
+                        <dt class="font-semibold">SMTP Port</dt>
+                        <dd class="mt-1">
+                          587 (STARTTLS recommended); 465 for SSL.
+                        </dd>
+                      </div>
+                      <div>
+                        <dt class="font-semibold">SMTP Username</dt>
+                        <dd class="mt-1">
+                          Login, typically full email address.
+                        </dd>
+                      </div>
+                      <div>
+                        <dt class="font-semibold">SMTP Password</dt>
+                        <dd class="mt-1">
+                          Password or App Password (MFA). Use secrets manager if
+                          available.
+                        </dd>
+                      </div>
+                    </dl>
+                  </section>
+
+                  <section id="smtp-examples" class="mb-6">
+                    <h4 class="text-lg font-semibold">Examples</h4>
+                    <div class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div
+                        class="p-3 rounded border bg-gray-50 dark:bg-gray-900/30"
+                      >
+                        <strong>Gmail</strong>
+                        <pre
+                          class="mt-2 text-sm whitespace-pre-wrap bg-transparent"
+                        >
+SMTP Host: smtp.gmail.com
+SMTP Port: 587
+SMTP Username: your.email@gmail.com
+SMTP Password: &lt;app-password&gt;</pre
+                        >
+                        <p
+                          class="text-xs text-gray-500 dark:text-gray-400 mt-2"
+                        >
+                          Google requires App Password if 2FA is active. Use
+                          STARTTLS on 587.
+                        </p>
+                      </div>
+                      <div
+                        class="p-3 rounded border bg-gray-50 dark:bg-gray-900/30"
+                      >
+                        <strong>Office365 / Outlook</strong>
+                        <pre
+                          class="mt-2 text-sm whitespace-pre-wrap bg-transparent"
+                        >
+SMTP Host: smtp.office365.com
+SMTP Port: 587
+SMTP Username: user@domain.com
+SMTP Password: &lt;password or app-password&gt;</pre
+                        >
+                        <p
+                          class="text-xs text-gray-500 dark:text-gray-400 mt-2"
+                        >
+                          Some orgs restrict SMTP — confirm with admin.
+                        </p>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section id="smtp-test" class="mb-6">
+                    <h4 class="text-lg font-semibold">Test & Execute</h4>
+                    <ol
+                      class="list-decimal ml-6 mt-3 text-gray-700 dark:text-gray-300"
+                    >
+                      <li>Fill required fields and save.</li>
+                      <li>
+                        Click <strong>Save & Execute</strong> to send a test
+                        email.
+                      </li>
+                      <li>
+                        Check inbox & spam, inspect transaction logs for SMTP
+                        responses.
+                      </li>
+                    </ol>
+                  </section>
+
+                  <section id="smtp-troubleshoot" class="mb-6">
+                    <h4 class="text-lg font-semibold">Troubleshooting</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+                      <div
+                        class="p-3 rounded border bg-white dark:bg-gray-900/40"
+                      >
+                        <h5 class="font-semibold">Common errors</h5>
+                        <ul
+                          class="list-disc ml-5 mt-2 text-gray-700 dark:text-gray-300"
+                        >
+                          <li>
+                            <strong>Authentication failed (535)</strong> —
+                            verify credentials or use App Password.
+                          </li>
+                          <li>
+                            <strong>Connection timed out</strong> — check host,
+                            port and firewall.
+                          </li>
+                          <li>
+                            <strong>Relay denied</strong> — ensure server allows
+                            relay for the user.
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        class="p-3 rounded border bg-white dark:bg-gray-900/40"
+                      >
+                        <h5 class="font-semibold">Deliverability</h5>
+                        <ul
+                          class="list-disc ml-5 mt-2 text-gray-700 dark:text-gray-300"
+                        >
+                          <li>Set SPF and DKIM records for sending domain.</li>
+                          <li>
+                            Use consistent From addresses and avoid spammy
+                            content.
+                          </li>
+                          <li>
+                            For bulk sends, use a transactional provider
+                            (SendGrid, SES, Mailgun).
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section id="smtp-faq" class="mb-6">
+                    <h4 class="text-lg font-semibold">FAQ</h4>
+                    <dl class="mt-3 text-gray-700 dark:text-gray-300 space-y-3">
+                      <div>
+                        <dt class="font-semibold">Can I attach files?</dt>
+                        <dd class="mt-1 text-sm">
+                          Attachments available if module UI supports file input
+                          or mapping. Otherwise use storage-to-email steps.
+                        </dd>
+                      </div>
+                      <div>
+                        <dt class="font-semibold">
+                          How many emails can I send?
+                        </dt>
+                        <dd class="mt-1 text-sm">
+                          Provider limits apply. Use a transactional service for
+                          larger volumes.
+                        </dd>
+                      </div>
+                      <div>
+                        <dt class="font-semibold">
+                          How to debug failed sends?
+                        </dt>
+                        <dd class="mt-1 text-sm">
+                          Collect SMTP error, timestamp and recipient; check
+                          logs and enable verbose logging if possible.
+                        </dd>
+                      </div>
+                    </dl>
+                  </section>
+
+                  <footer class="mt-4 text-xs text-gray-500 dark:text-gray-400">
+                    Last updated: <span id="smtp-last-updated">2025-11-13</span>
+                  </footer>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <!-- Send Outlook Email Operation -->
-        <section id="SendOutlookEmailOperation" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Send Outlook Email Operation</h2>
-          <p class="mt-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Pellentesque in rutrum dui, et facilisis justo. Suspendisse mauris
-            nulla, sagittis a dui at, viverra malesuada eros.
-          </p>
-          <p class="mt-2">
-            Cras mauris lorem, consequat vel viverra eget, facilisis vitae orci.
-            Fusce ac dolor eu purus aliquam gravida non ac massa.
-          </p>
+        <!-- Send Outlook Email  -->
+        <section id="SendOutlookEmail" class="content-section hidden">
+          <!-- Hero -->
+          <div
+            class="bg-white dark:bg-gray-800 rounded-lg shadow border dark:border-gray-700 p-6 mb-6"
+          >
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h6 class="text-2xl font-semibold">Send Outlook Email</h6>
+                <p
+                  class="mt-2 text-sm text-gray-600 dark:text-gray-300 max-w-2xl"
+                >
+                  Step-by-step configuration, field explanations, examples,
+                  troubleshooting tips, and automation samples for sending
+                  emails via Microsoft 365 / Outlook (Graph API).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick facts -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div
+              class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900/40 border dark:border-gray-700"
+            >
+              <h4 class="font-semibold">What it does</h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">
+                Sends messages using Outlook / Microsoft Graph API or SMTP for
+                Microsoft 365 mailboxes.
+              </p>
+            </div>
+            <div
+              class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900/40 border dark:border-gray-700"
+            >
+              <h4 class="font-semibold">Recommended</h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">
+                Use Graph API (OAuth) with Mail.Send scope. Store secrets
+                securely.
+              </p>
+            </div>
+            <div
+              class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900/40 border dark:border-gray-700"
+            >
+              <h4 class="font-semibold">Before you start</h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">
+                Register Azure app, obtain Tenant/Client IDs and secret, grant
+                Mail.Send consent.
+              </p>
+            </div>
+          </div>
+
+          <!-- Overview -->
+          <section id="overview" class="mb-8">
+            <h3 class="text-xl font-semibold mb-3">Overview</h3>
+            <div
+              class="bg-white dark:bg-gray-800 p-4 rounded border dark:border-gray-700"
+            >
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                The Send Outlook Email module enables workflows to send emails
+                from Microsoft 365 mailboxes. It supports HTML/plain text
+                bodies, attachments, and can use Microsoft Graph API
+                (recommended) or SMTP where necessary.
+              </p>
+            </div>
+          </section>
+
+          <!-- Fields (expanded, single-page) -->
+          <section id="fields" class="mb-8">
+            <h3 class="text-xl font-semibold mb-3">Fields (explained)</h3>
+
+            <!-- User Email -->
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 p-5 mb-4"
+            >
+              <h4 class="text-lg font-semibold">
+                User Email
+                <span class="text-sm text-gray-500 dark:text-gray-400"
+                  >(required)</span
+                >
+              </h4>
+              <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                The Microsoft 365 mailbox that will send the message. Example:
+                <code class="bg-gray-100 dark:bg-gray-900 px-1 rounded"
+                  >john.doe@company.com</code
+                >.
+              </p>
+              <ul
+                class="list-disc ml-6 mt-2 text-sm text-gray-700 dark:text-gray-300"
+              >
+                <li>Ensure the mailbox exists and is licensed.</li>
+                <li>
+                  If using Graph API, the app needs
+                  <strong>Mail.Send</strong> permission.
+                </li>
+              </ul>
+            </div>
+
+            <!-- To Email -->
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 p-5 mb-4"
+            >
+              <h4 class="text-lg font-semibold">
+                To Email
+                <span class="text-sm text-gray-500 dark:text-gray-400"
+                  >(required)</span
+                >
+              </h4>
+              <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                Recipient address. Supports multiple recipients separated by
+                commas when the platform maps them correctly.
+              </p>
+              <pre
+                class="bg-gray-100 dark:bg-gray-900 p-3 rounded text-sm mt-3 overflow-auto"
+              >
+alice@company.com, bob@company.com</pre
+              >
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                Invalid addresses may cause bounces — validate when possible.
+              </p>
+            </div>
+
+            <!-- Subject -->
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 p-5 mb-4"
+            >
+              <h4 class="text-lg font-semibold">
+                Subject
+                <span class="text-sm text-gray-500 dark:text-gray-400"
+                  >(required)</span
+                >
+              </h4>
+              <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                The subject line displayed in the recipient's inbox. Keep
+                concise (70 chars) and avoid spammy words.
+              </p>
+            </div>
+
+            <!-- Body -->
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 p-5 mb-4"
+            >
+              <h4 class="text-lg font-semibold">Body (HTML / Plain text)</h4>
+              <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                Use the rich editor to compose HTML or paste plain text. Include
+                a plain-text fallback for better deliverability.
+              </p>
+              <pre
+                class="bg-gray-100 dark:bg-gray-900 p-3 rounded text-sm mt-3 overflow-auto"
+              >
+&lt;h1&gt;Hello&lt;/h1&gt;&lt;p&gt;This is a test.&lt;/p&gt;</pre
+              >
+            </div>
+
+            <!-- Tenant / Client / Secret -->
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 p-5 mb-4"
+            >
+              <h4 class="text-lg font-semibold">
+                Tenant ID / Client ID / Client Secret
+                <span class="text-sm text-gray-500 dark:text-gray-400"
+                  >(required for Graph API)</span
+                >
+              </h4>
+              <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                These values authenticate your app with Azure AD. Obtain them
+                from Azure Portal → App Registrations.
+              </p>
+              <ul
+                class="list-disc ml-6 mt-2 text-sm text-gray-700 dark:text-gray-300"
+              >
+                <li>
+                  <strong>Tenant ID</strong> — your Azure AD directory GUID.
+                </li>
+                <li><strong>Client ID</strong> — your app's GUID.</li>
+                <li>
+                  <strong>Client Secret</strong> — app secret; keep it safe and
+                  rotate regularly.
+                </li>
+              </ul>
+            </div>
+
+            <!-- Save To SentItems -->
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 p-5 mb-4"
+            >
+              <h4 class="text-lg font-semibold">Save To SentItems</h4>
+              <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                Choose whether the sent email should appear in the mailbox's
+                Sent Items folder.
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                Options:
+                <code class="bg-gray-100 dark:bg-gray-900 px-1 rounded"
+                  >true</code
+                >
+                or
+                <code class="bg-gray-100 dark:bg-gray-900 px-1 rounded"
+                  >false</code
+                >. Default is typically
+                <code class="bg-gray-100 dark:bg-gray-900 px-1 rounded"
+                  >true</code
+                >.
+              </p>
+            </div>
+          </section>
+
+          <!-- Examples -->
+          <!-- Examples (REPLACE existing #examples section with this) -->
+          <section id="examples" class="mb-8">
+            <h3 class="text-xl font-semibold mb-3">Examples</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Graph API payload (placeholders) -->
+              <div
+                class="bg-white dark:bg-gray-800 p-4 rounded border dark:border-gray-700"
+              >
+                <h4 class="font-semibold">Microsoft Graph (recommended)</h4>
+
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                  Example JSON payload (use your OAuth token when calling the
+                  Graph API). Replace the placeholders below with your real
+                  values.
+                </p>
+
+                <pre
+                  class="bg-gray-100 dark:bg-gray-900 p-3 rounded text-sm overflow-auto mt-2"
+                >
+{
+  "from": "noreply@yourdomain.com",
+  "to": "user@example.com",
+  "subject": "Test email from Graph API",
+  "body": "&lt;h1&gt;Hello&lt;/h1&gt;&lt;p&gt;This is a test.&lt;/p&gt;"
+}
+      </pre
+                >
+
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                  Example environment variables (do NOT commit these to source
+                  control):
+                </p>
+                <pre
+                  class="bg-gray-50 dark:bg-gray-900 p-3 rounded text-xs mt-2 overflow-auto"
+                >
+TENANT_ID="your-tenant-guid-here"
+CLIENT_ID="your-client-guid-here"
+CLIENT_SECRET="your-client-secret-here"
+      </pre
+                >
+
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                  Use those values when requesting an OAuth token (example
+                  below).
+                </p>
+              </div>
+
+              <!-- Token request + send example using placeholders -->
+              <div
+                class="bg-white dark:bg-gray-800 p-4 rounded border dark:border-gray-700"
+              >
+                <h4 class="font-semibold">
+                  Obtain token (example `curl`) & send
+                </h4>
+
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                  Replace `TENANT_ID`, `CLIENT_ID`, and `CLIENT_SECRET` with
+                  your real values. This example requests a client credentials
+                  token and demonstrates the values you need.
+                </p>
+
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                  <strong>1) Request token (client credentials)</strong>
+                </p>
+                <pre
+                  class="bg-gray-100 dark:bg-gray-900 p-3 rounded text-sm mt-2 overflow-auto"
+                >
+curl -X POST "https://login.microsoftonline.com/TENANT_ID/oauth6/v2.0/token" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "client_id=CLIENT_ID&scope=https%3A%2F%2Fgraph.microsoft.com%2F.default&client_secret=CLIENT_SECRET&grant_type=client_credentials"
+      </pre
+                >
+
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                  <strong
+                    >2) Use returned access_token to call Graph (pseudo)</strong
+                  >
+                </p>
+                <pre
+                  class="bg-gray-100 dark:bg-gray-900 p-3 rounded text-sm mt-2 overflow-auto"
+                >
+# Authorization: Bearer &lt;ACCESS_TOKEN&gt;
+POST https://graph.microsoft.com/v1.0/users/noreply@yourdomain.com/sendMail
+Content-Type: application/json
+
+{
+  "message": {
+    "subject": "Hello from Graph",
+    "body": { "contentType": "HTML", "content": "&lt;p&gt;This is a test&lt;/p&gt;" },
+    "toRecipients": [ { "emailAddress": { "address": "user@example.com" } } ]
+  }
+}
+      </pre
+                >
+
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">
+                  <strong>Security note:</strong> keep
+                  <code>CLIENT_SECRET</code> private. Use a secrets manager
+                  (Azure Key Vault, HashiCorp Vault, etc.) or environment
+                  variables on the server side — never embed client secrets in
+                  browser code or commit them to repositories.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Attachments -->
+          <section id="attachments" class="mb-8">
+            <h3 class="text-xl font-semibold mb-3">Attachments & Templates</h3>
+            <div
+              class="bg-white dark:bg-gray-800 p-4 rounded border dark:border-gray-700"
+            >
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Attach files by mapping storage outputs or file inputs.
+                Templates can be stored as HTML with placeholders (e.g.,
+                <code>{{name}}</code>, <code>{{date}}</code>).
+              </p>
+              <pre
+                class="bg-gray-100 dark:bg-gray-900 p-3 rounded text-sm overflow-auto mt-3"
+              >
+&lt;h1&gt;Report for {{date}}&lt;/h1&gt;&lt;p&gt;Hello {{name}}&lt;/p&gt;</pre
+              >
+            </div>
+          </section>
+
+          <!-- Test & Execute -->
+          <section id="test" class="mb-8">
+            <h3 class="text-xl font-semibold mb-3">Test & Execute</h3>
+            <div
+              class="bg-white dark:bg-gray-800 p-4 rounded border dark:border-gray-700"
+            >
+              <ol
+                class="list-decimal ml-5 text-sm text-gray-700 dark:text-gray-300"
+              >
+                <li>Fill required fields and save configuration.</li>
+                <li>
+                  Click <strong>Save & Execute</strong> to send a test message.
+                </li>
+                <li>
+                  Check inbox and spam folder. Inspect logs for SMTP/Graph
+                  responses.
+                </li>
+              </ol>
+            </div>
+          </section>
+
+          <!-- Troubleshooting -->
+          <section id="troubleshoot" class="mb-8">
+            <h3 class="text-xl font-semibold mb-3">Troubleshooting</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div
+                class="bg-white dark:bg-gray-800 p-4 rounded border dark:border-gray-700"
+              >
+                <h4 class="font-semibold">Common errors</h4>
+                <ul
+                  class="list-disc ml-5 mt-2 text-sm text-gray-700 dark:text-gray-300"
+                >
+                  <li>
+                    <strong>535 Authentication failed</strong> — check
+                    credentials or use App Password.
+                  </li>
+                  <li>
+                    <strong>Connection timed out</strong> — verify host, port
+                    and outbound rules.
+                  </li>
+                  <li>
+                    <strong>Relay denied</strong> — ensure SMTP relay is
+                    permitted.
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-white dark:bg-gray-800 p-4 rounded border dark:border-gray-700"
+              >
+                <h4 class="font-semibold">Deliverability</h4>
+                <ul
+                  class="list-disc ml-5 mt-2 text-sm text-gray-700 dark:text-gray-300"
+                >
+                  <li>Set SPF and DKIM for your sending domain.</li>
+                  <li>
+                    Use consistent From addresses and avoid spammy content.
+                  </li>
+                  <li>
+                    For high volumes use dedicated providers (SendGrid, SES).
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- Security -->
+          <section id="security" class="mb-8">
+            <h3 class="text-xl font-semibold mb-3">Security Notes</h3>
+            <div
+              class="bg-white dark:bg-gray-800 p-4 rounded border dark:border-gray-700"
+            >
+              <ul
+                class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300"
+              >
+                <li>Never store plaintext secrets in VCS or shared logs.</li>
+                <li>
+                  Prefer Azure Key Vault or equivalent for secrets management.
+                </li>
+                <li>
+                  Use token-based auth where possible and rotate secrets
+                  regularly.
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- FAQ -->
+          <section id="faq" class="mb-8">
+            <h3 class="text-xl font-semibold mb-3">FAQ</h3>
+            <div
+              class="bg-white dark:bg-gray-800 p-4 rounded border dark:border-gray-700"
+            >
+              <dl class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
+                <div>
+                  <dt class="font-semibold">Can I attach files?</dt>
+                  <dd class="mt-1">
+                    Yes — via file input or mapping storage outputs.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-semibold">How many emails can I send?</dt>
+                  <dd class="mt-1">
+                    Subject to provider limits—check Microsoft 365 quotas.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-semibold">How to debug?</dt>
+                  <dd class="mt-1">
+                    Collect SMTP/Graph error codes, timestamps, and logs; share
+                    with support.
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </section>
+
+          <!-- Support -->
+          <section id="support" class="mb-16">
+            <h3 class="text-xl font-semibold mb-3">Contact & Support</h3>
+            <div
+              class="bg-white dark:bg-gray-800 p-4 rounded border dark:border-gray-700"
+            >
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                For help provide:
+              </p>
+              <ul
+                class="list-disc ml-5 mt-2 text-sm text-gray-700 dark:text-gray-300"
+              >
+                <li>Screenshot of settings (hide secrets)</li>
+                <li>Exact SMTP/Graph error message</li>
+                <li>Timestamps and recipient addresses</li>
+              </ul>
+            </div>
+          </section>
         </section>
 
-        <!-- Read Outlook Email Operation -->
-        <section id="ReadOutlookEmailOperation" class="content-section hidden">
-          <h2 class="text-2xl font-semibold">Read Outlook Email Operation</h2>
-          <p class="mt-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-            efficitur malesuada lorem nec congue. Sed id urna viverra, hendrerit
-            lacus sed, blandit turpis.
-          </p>
-          <p class="mt-2">
-            Proin sit amet scelerisque tortor. Sed non est ut orci egestas
-            elementum vitae nec nulla. Nam id faucibus mauris.
-          </p>
+        <section id="ReadOutlookEmail" class="content-section">
+          <div class="space-y-6">
+            <!-- Title -->
+            <header>
+              <h2 class="text-2xl font-semibold">Read Outlook Email</h2>
+              <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">
+                Complete explanation of each input field used to fetch emails
+                from Microsoft Outlook using Microsoft Graph API.
+              </p>
+            </header>
+
+            <!-- Cards -->
+            <div class="space-y-4">
+              <!-- User Email -->
+              <div
+                class="border-l-4 border-blue-500 bg-white dark:bg-gray-800 p-5 rounded-r-xl shadow-sm"
+              >
+                <h3 class="text-lg font-semibold mb-2">
+                  User Email
+                  <span class="text-sm text-gray-500 dark:text-gray-400"
+                    >*</span
+                  >
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                  The Outlook mailbox address from which emails will be fetched.
+                  Example:
+                  <code class="bg-gray-100 dark:bg-gray-900 px-1 rounded"
+                    >john.doe@yourdomain.com</code
+                  >.
+                </p>
+              </div>
+
+              <!-- Sort Type -->
+              <div
+                class="border-l-4 border-blue-500 bg-white dark:bg-gray-800 p-5 rounded-r-xl shadow-sm"
+              >
+                <h3 class="text-lg font-semibold mb-2">Sort Type</h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                  Determines the order in which emails are retrieved (based on
+                  received date).
+                </p>
+
+                <div class="mt-4 space-y-3">
+                  <div
+                    class="border-l-4 border-green-500 bg-white dark:bg-gray-800 p-4 rounded-r-lg"
+                  >
+                    <h4 class="font-semibold">asc (Ascending)</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                      Pulls emails from <strong>oldest → newest</strong>. Good
+                      for historical processing.
+                    </p>
+                    <ul
+                      class="list-disc ml-5 text-sm text-gray-600 dark:text-gray-300 mt-2"
+                    >
+                      <li>Useful for incremental/chronological workflows.</li>
+                    </ul>
+                  </div>
+
+                  <div
+                    class="border-l-4 border-red-500 bg-white dark:bg-gray-800 p-4 rounded-r-lg"
+                  >
+                    <h4 class="font-semibold">desc (Descending)</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                      Pulls emails from <strong>newest → oldest</strong>.
+                      Typical for checking recent activity.
+                    </p>
+                    <ul
+                      class="list-disc ml-5 text-sm text-gray-600 dark:text-gray-300 mt-2"
+                    >
+                      <li>
+                        Best for near-real-time monitoring and dashboards.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Size of Mail to Pull -->
+              <div
+                class="border-l-4 border-green-500 bg-white dark:bg-gray-800 p-5 rounded-r-xl shadow-sm"
+              >
+                <h3 class="text-lg font-semibold mb-2">
+                  Size of Mail to Pull
+                  <span class="text-sm text-gray-500 dark:text-gray-400"
+                    >(Min: 1, Max: 1000) *</span
+                  >
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                  Number of emails to retrieve in one execution. Large values
+                  may increase runtime and hit throttling limits.
+                </p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  Tip: Start with small values (5–20) for testing.
+                </p>
+              </div>
+
+              <!-- Read Mode -->
+              <div
+                class="border-l-4 border-indigo-500 bg-white dark:bg-gray-800 p-5 rounded-r-xl shadow-sm"
+              >
+                <h3 class="text-lg font-semibold mb-2">Read Mode</h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                  Select which category/folder or state to filter when fetching
+                  emails.
+                </p>
+
+                <div class="mt-4 space-y-3">
+                  <div
+                    class="border-l-4 border-blue-500 bg-white dark:bg-gray-800 p-4 rounded-r-lg"
+                  >
+                    <h4 class="font-semibold">All Mail</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                      Fetches every email across the mailbox (Inbox, Sent,
+                      Drafts, Deleted, etc.).
+                    </p>
+                  </div>
+
+                  <div
+                    class="border-l-4 border-green-500 bg-white dark:bg-gray-800 p-4 rounded-r-lg"
+                  >
+                    <h4 class="font-semibold">Inbox</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                      Fetches only emails in the Inbox folder.
+                    </p>
+                  </div>
+
+                  <div
+                    class="border-l-4 border-purple-500 bg-white dark:bg-gray-800 p-4 rounded-r-lg"
+                  >
+                    <h4 class="font-semibold">Read</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                      Fetches only emails marked as read (opened).
+                    </p>
+                  </div>
+
+                  <div
+                    class="border-l-4 border-red-500 bg-white dark:bg-gray-800 p-4 rounded-r-lg"
+                  >
+                    <h4 class="font-semibold">Unread</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                      Fetches only unread (new) emails — great for processing
+                      incoming tasks.
+                    </p>
+                  </div>
+
+                  <div
+                    class="border-l-4 border-yellow-500 bg-white dark:bg-gray-800 p-4 rounded-r-lg"
+                  >
+                    <h4 class="font-semibold">Flagged</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                      Fetches messages the user flagged/starred as important.
+                    </p>
+                  </div>
+
+                  <div
+                    class="border-l-4 border-teal-500 bg-white dark:bg-gray-800 p-4 rounded-r-lg"
+                  >
+                    <h4 class="font-semibold">Sent</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                      Fetches messages in Sent Items — useful for delivery/audit
+                      checks.
+                    </p>
+                  </div>
+
+                  <div
+                    class="border-l-4 border-pink-500 bg-white dark:bg-gray-800 p-4 rounded-r-lg"
+                  >
+                    <h4 class="font-semibold">Drafts</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                      Fetches messages saved as drafts.
+                    </p>
+                  </div>
+
+                  <div
+                    class="border-l-4 border-gray-500 bg-white dark:bg-gray-800 p-4 rounded-r-lg"
+                  >
+                    <h4 class="font-semibold">Deleted</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                      Fetches messages in Deleted Items (trash) — useful for
+                      recovery/audit.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tenant / Client / Secret -->
+              <div
+                class="border-l-4 border-purple-500 bg-white dark:bg-gray-800 p-5 rounded-r-xl shadow-sm"
+              >
+                <h3 class="text-lg font-semibold mb-2">
+                  Tenant ID
+                  <span class="text-sm text-gray-500 dark:text-gray-400"
+                    >*</span
+                  >
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                  Azure AD Tenant GUID that identifies your organization.
+                </p>
+                <pre
+                  class="bg-gray-100 dark:bg-gray-900 p-3 rounded text-xs mt-3 overflow-auto"
+                >
+TENANT_ID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</pre
+                >
+              </div>
+
+              <div
+                class="border-l-4 border-pink-500 bg-white dark:bg-gray-800 p-5 rounded-r-xl shadow-sm"
+              >
+                <h3 class="text-lg font-semibold mb-2">
+                  Client ID
+                  <span class="text-sm text-gray-500 dark:text-gray-400"
+                    >*</span
+                  >
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                  Your App Registration's Client (Application) ID.
+                </p>
+                <pre
+                  class="bg-gray-100 dark:bg-gray-900 p-3 rounded text-xs mt-3 overflow-auto"
+                >
+CLIENT_ID = "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"</pre
+                >
+              </div>
+
+              <div
+                class="border-l-4 border-red-500 bg-white dark:bg-gray-800 p-5 rounded-r-xl shadow-sm"
+              >
+                <h3 class="text-lg font-semibold mb-2">
+                  Client Secret
+                  <span class="text-sm text-gray-500 dark:text-gray-400"
+                    >*</span
+                  >
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                  App secret used to authenticate with Azure AD. Keep this
+                  secret and do not expose it in public code.
+                </p>
+                <pre
+                  class="bg-gray-100 dark:bg-gray-900 p-3 rounded text-xs mt-3 overflow-auto"
+                >
+CLIENT_SECRET = "your-super-secret-key"</pre
+                >
+                <p class="text-xs text-red-400 dark:text-red-300 mt-2">
+                  ⚠ Never expose client secrets in frontend or public code.
+                </p>
+              </div>
+
+              <!-- Actions -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div
+                  class="bg-white dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700"
+                >
+                  <h4 class="font-semibold">Save</h4>
+                  <p class="text-sm text-gray-700 dark:text-gray-300 mt-2">
+                    Saves the current configuration locally to the workflow but
+                    does not run it. Validates required fields first.
+                  </p>
+                </div>
+
+                <div
+                  class="bg-white dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700"
+                >
+                  <h4 class="font-semibold">Save &amp; Execute</h4>
+                  <p class="text-sm text-gray-700 dark:text-gray-300 mt-2">
+                    Saves the configuration then immediately runs the read
+                    operation. Results and errors appear in Transaction panels.
+                  </p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                    Warning: Performs network calls — use small test sizes while
+                    validating.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Troubleshooting -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div
+                  class="bg-white dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700"
+                >
+                  <h4 class="font-semibold">Common Errors &amp; Fixes</h4>
+                  <ul
+                    class="list-disc ml-5 mt-2 text-sm text-gray-700 dark:text-gray-300"
+                  >
+                    <li>
+                      <strong>Authentication failed (401 / 400)</strong> —
+                      verify Tenant ID, Client ID, Client Secret and required
+                      Graph permissions (<code>Mail.Read</code> /
+                      <code>Mail.ReadWrite</code>).
+                    </li>
+                    <li>
+                      <strong>Insufficient permissions (403)</strong> — grant
+                      admin consent for scopes or use delegated authentication.
+                    </li>
+                    <li>
+                      <strong>Connection timed out</strong> — ensure outbound
+                      HTTPS to <code>graph.microsoft.com</code> is allowed.
+                    </li>
+                    <li>
+                      <strong>Rate limiting</strong> — reduce batch size and
+                      implement retries with backoff.
+                    </li>
+                  </ul>
+                </div>
+
+                <div
+                  class="bg-white dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700"
+                >
+                  <h4 class="font-semibold">Collecting Debug Info</h4>
+                  <ol
+                    class="list-decimal ml-5 mt-2 text-sm text-gray-700 dark:text-gray-300"
+                  >
+                    <li>Record timestamp and transaction ID.</li>
+                    <li>Copy exact error messages and HTTP status codes.</li>
+                    <li>
+                      Note request parameters (User Email, Read Mode, Sort Type,
+                      Size).
+                    </li>
+                    <li>Attach verbose logs if available.</li>
+                  </ol>
+                </div>
+              </div>
+
+              <!-- Security Notes -->
+              <div
+                class="bg-white dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700"
+              >
+                <h4 class="font-semibold">Security Notes</h4>
+                <ul
+                  class="list-disc ml-5 mt-2 text-sm text-gray-700 dark:text-gray-300"
+                >
+                  <li>
+                    Never embed <code>CLIENT_SECRET</code> in client-side code
+                    or public repos — use Azure Key Vault or similar.
+                  </li>
+                  <li>
+                    Prefer least-privilege scopes and token-based auth. Rotate
+                    secrets regularly.
+                  </li>
+                  <li>Use TLS for all API calls and verify certificates.</li>
+                </ul>
+              </div>
+
+              <!-- FAQ -->
+              <div
+                class="bg-white dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700 space-y-3"
+              >
+                <h4 class="font-semibold">FAQ</h4>
+
+                <div>
+                  <dt class="font-semibold">
+                    Can I read mail from shared mailboxes?
+                  </dt>
+                  <dd class="text-sm text-gray-700 dark:text-gray-300 mt-1">
+                    Yes — use the shared mailbox address (ensure your app or
+                    delegated user has access).
+                  </dd>
+                </div>
+
+                <div>
+                  <dt class="font-semibold">What fetch size should I use?</dt>
+                  <dd class="text-sm text-gray-700 dark:text-gray-300 mt-1">
+                    Start small (5–20) for testing; choose 50–200 for production
+                    while watching rate limits.
+                  </dd>
+                </div>
+
+                <div>
+                  <dt class="font-semibold">Can I filter by date or folder?</dt>
+                  <dd class="text-sm text-gray-700 dark:text-gray-300 mt-1">
+                    Yes — for advanced queries use Graph filters, e.g.
+                    <code>filter=receivedDateTime ge 2025-01-01T00:00:00Z</code
+                    >.
+                  </dd>
+                </div>
+              </div>
+
+              <!-- Contact & Support -->
+              <div
+                class="bg-white dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700"
+              >
+                <h4 class="font-semibold">Contact &amp; Support</h4>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mt-2">
+                  When contacting support, include:
+                </p>
+                <ul
+                  class="list-disc ml-5 mt-2 text-sm text-gray-700 dark:text-gray-300"
+                >
+                  <li>Screenshot of settings (mask secrets)</li>
+                  <li>Exact error message & HTTP status</li>
+                  <li>Timestamp and transaction ID</li>
+                  <li>
+                    Request parameters (User Email, Read Mode, Sort Type, Size)
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
 

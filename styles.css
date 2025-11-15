@@ -78,3 +78,27 @@ header .toplink.is-active {
 .search-item small {
   opacity: 0.7;
 }
+
+#main {
+  -webkit-overflow-scrolling: touch; /* momentum scrolling on iOS */
+  scroll-behavior: smooth;
+}
+#main::-webkit-scrollbar {
+  width: 10px;
+}
+#main::-webkit-scrollbar-thumb {
+  background: rgba(107, 114, 128, 0.35);
+  border-radius: 8px;
+}
+:root.dark #main::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+}
+
+/* hide scrollbar but keep scrolling (works cross-browser) */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

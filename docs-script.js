@@ -51,22 +51,34 @@ const shell = document.getElementById("shell");
 const openBtn = document.getElementById("sidebar-open");
 const closeBtn = document.getElementById("sidebar-close");
 const sideNav = document.getElementById("side-nav");
-
 function openSidebar() {
   sidebar.classList.remove("-translate-x-full");
   shell.classList.add("pl-72");
-  overlay?.classList.remove("hidden"); // overlay purely visual
+
+  // Show overlay visually but do NOT block pointer events so page stays scrollable.
+  overlay?.classList.remove("hidden");
+  overlay?.classList.add("visible");
+  overlay && (overlay.style.pointerEvents = "none");
+
   openBtn?.classList.add("hidden");
   closeBtn?.classList.remove("hidden");
-  document.body.style.overflow = "hidden";
+
+  // IMPORTANT: remove any body overflow locking — keep the page scrollable.
+  // document.body.style.overflow = "hidden";  <-- removed on purpose
 }
 function closeSidebar() {
   sidebar.classList.add("-translate-x-full");
   shell.classList.remove("pl-72");
+
   overlay?.classList.add("hidden");
+  overlay?.classList.remove("visible");
+  overlay && (overlay.style.pointerEvents = "none");
+
   openBtn?.classList.remove("hidden");
   closeBtn?.classList.add("hidden");
-  document.body.style.overflow = "";
+
+  // restore body overflow if something else changed it elsewhere (safety)
+  // document.body.style.overflow = "";  <-- intentionally not used
 }
 
 openBtn?.addEventListener("click", openSidebar);
@@ -141,18 +153,18 @@ const BTN_TO_HASH = {
   "btn-introduction": "#Introduction",
   "btn-getStarted": "#GetStarted",
   "btn-tutorials": "#Tutorials",
-  "btn-integrations": "#Integrations",
+  "btn-addOns": "#addOns",
   "btn-materials": "#UsefulMaterials",
   "btn-latestReleaseNotes": "#LatestReleaseNotes",
   // Add nested group buttons if you want them to set a hash as well:
-  // "btn-integrations-lms": "#Integrations-LMs",
-  // "btn-integrations-lms-openai": "#Integrations-LMs-OpenAI",
+  // "btn-addOns-lms": "#addOns-LMs",
+  // "btn-addOns-lms-openai": "#addOns-LMs-OpenAI",
 };
 
 // For header clicks that correspond to groups
 const HASH_TO_GROUP = {
   "#Tutorials": { btn: "btn-tutorials", panel: "sub-tutorials" },
-  "#Integrations": { btn: "btn-integrations", panel: "sub-integrations" },
+  "#addOns": { btn: "btn-addOns", panel: "sub-addOns" },
   "#UsefulMaterials": { btn: "btn-materials", panel: "sub-materials" },
 };
 
@@ -269,11 +281,11 @@ function setupSimpleButton(btnId) {
 /** Init groups/simple buttons */
 // Top-level groups
 setupAccordion("btn-tutorials", "sub-tutorials");
-setupAccordion("btn-integrations", "sub-integrations");
+setupAccordion("btn-addOns", "sub-addOns");
 setupAccordion("btn-materials", "sub-materials");
 // Nested examples (uncomment when you add them in HTML):
-setupAccordion("btn-integrations-lms", "sub-integrations-lms");
-setupAccordion("btn-integrations-lms-openai", "sub-integrations-lms-openai");
+setupAccordion("btn-addOns-lms", "sub-addOns-lms");
+setupAccordion("btn-addOns-lms-openai", "sub-addOns-lms-openai");
 
 // Simple buttons without panels
 setupSimpleButton("btn-introduction");
@@ -402,7 +414,7 @@ headerLinks.forEach((link) => {
     // If header targets a group, open it; else sync from hash
     const m = {
       "#Tutorials": { btn: "btn-tutorials", panel: "sub-tutorials" },
-      "#Integrations": { btn: "btn-integrations", panel: "sub-integrations" },
+      "#addOns": { btn: "btn-addOns", panel: "sub-addOns" },
       "#UsefulMaterials": { btn: "btn-materials", panel: "sub-materials" },
     }[h];
 
@@ -483,16 +495,16 @@ headerLinks.forEach((link) => {
       b && b.getAttribute("aria-expanded") === "false" && b.click();
     }
 
-    // Integrations (Parent)
-    if (linkEl.closest("#sub-integrations")) {
-      const b = document.getElementById("btn-integrations");
+    // addOns (Parent)
+    if (linkEl.closest("#sub-addOns")) {
+      const b = document.getElementById("btn-addOns");
       b && b.getAttribute("aria-expanded") === "false" && b.click();
     }
 
-    // Integrations → Language Models (Grandchild)
-    if (linkEl.closest("#sub-integrations-lms")) {
-      const b1 = document.getElementById("btn-integrations");
-      const b2 = document.getElementById("btn-integrations-lms");
+    // addOns → Language Models (Grandchild)
+    if (linkEl.closest("#sub-addOns-lms")) {
+      const b1 = document.getElementById("btn-addOns");
+      const b2 = document.getElementById("btn-addOns-lms");
       // ensure parent then child
       b1 && b1.getAttribute("aria-expanded") === "false" && b1.click();
       b2 && b2.getAttribute("aria-expanded") === "false" && b2.click();
@@ -529,10 +541,10 @@ headerLinks.forEach((link) => {
 
         // Build a breadcrumb label based on where it lives
         let breadcrumb = label;
-        if (a.closest("#sub-integrations-lms")) {
-          breadcrumb = "Integrations › Language Models › " + label;
-        } else if (a.closest("#sub-integrations")) {
-          breadcrumb = "Integrations › " + label;
+        if (a.closest("#sub-addOns-lms")) {
+          breadcrumb = "addOns › Language Models › " + label;
+        } else if (a.closest("#sub-addOns")) {
+          breadcrumb = "addOns › " + label;
         } else if (a.closest("#sub-tutorials")) {
           breadcrumb = "Tutorials › " + label;
         } else if (a.closest("#sub-materials")) {
@@ -568,10 +580,10 @@ headerLinks.forEach((link) => {
         element: document.querySelector("#btn-tutorials"),
       },
       {
-        id: "Integrations",
-        label: "Integrations",
-        breadcrumb: "Integrations",
-        element: document.querySelector("#btn-integrations"),
+        id: "addOns",
+        label: "addOns",
+        breadcrumb: "addOns",
+        element: document.querySelector("#btn-addOns"),
       },
       {
         id: "UsefulMaterials",
@@ -742,8 +754,8 @@ headerLinks.forEach((link) => {
         const b = document.getElementById("btn-tutorials");
         b && b.getAttribute("aria-expanded") === "false" && b.click();
       }
-      if (item.id === "Integrations") {
-        const b = document.getElementById("btn-integrations");
+      if (item.id === "addOns") {
+        const b = document.getElementById("btn-addOns");
         b && b.getAttribute("aria-expanded") === "false" && b.click();
       }
       if (item.id === "UsefulMaterials") {
