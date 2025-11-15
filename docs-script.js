@@ -810,6 +810,7 @@ headerLinks.forEach((link) => {
 
     const h = `#${item.id}`;
 
+    updateBreadcrumb(item.breadcrumb || item.label);
     // If the index entry came from a real anchor, expand its parents
     if (item.element instanceof HTMLElement) {
       const linkEl = item.element;
