@@ -1,219 +1,407 @@
 <!DOCTYPE html>
-<html lang="en" class="transition-colors duration-500">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stream Fusion</title>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StreamFusion - The AI-Native Integration Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
+  <script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                fontFamily: { sans: ['Inter', 'sans-serif'] },
+                animation: {
+                    'float': 'float 6s ease-in-out infinite',
+                    'dash': 'dash 20s linear infinite',
+                },
+                keyframes: {
+                    float: {
+                        '0%, 100%': { transform: 'translateY(0)' },
+                        '50%': { transform: 'translateY(-15px)' },
+                    },
+                    dash: { to: { strokeDashoffset: '-1000' } }
+                }
+            }
+        }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text {
+        background: linear-gradient(90deg, #8b5cf6 0%, #ec4899 50%, #38bdf8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .bg-grid {
+        background-image: linear-gradient(to right, rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+    }
+    .dark .bg-grid {
+        background-image: linear-gradient(to right, rgba(139, 92, 246, 0.15) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(139, 92, 246, 0.15) 1px, transparent 1px);
+    }
+    .glow-box { box-shadow: 0 0 40px rgba(139, 92, 246, 0.1); transition: all 0.3s ease; }
+    .glow-box:hover { box-shadow: 0 0 60px rgba(139, 92, 246, 0.25); transform: translateY(-5px); }
+    .dark .glow-box { box-shadow: 0 0 40px rgba(139, 92, 246, 0.2); }
+    .dark .glow-box:hover { box-shadow: 0 0 60px rgba(139, 92, 246, 0.4); }
+    .node-line { stroke-dasharray: 8; animation: dash 20s linear infinite; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
 
-  <body
-    class="font-sans bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 min-h-screen"
-  >
-    <!-- Header: light default, dark variant -->
-    <header
-      class="bg-white text-gray-900 border-b border-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-700"
-    >
-      <div class="container mx-auto flex justify-between items-center p-4">
-        <div class="flex items-center gap-3">
-          <img src="logo-1.png" alt="Stream Fusion Logo" class="w-10 h-10" />
-          <h1 class="text-xl font-bold">Stream Fusion</h1>
-        </div>
-        <nav class="flex items-center gap-6">
-          <a href="#home" class="hover:text-pink-600 dark:hover:text-pink-400"
-            >Home</a
-          >
-          <a href="#about" class="hover:text-pink-600 dark:hover:text-pink-400"
-            >About</a
-          >
-          <a
-            href="#features"
-            class="hover:text-pink-600 dark:hover:text-pink-400"
-            >Features</a
-          >
-          <a
-            href="#contact"
-            class="hover:text-pink-600 dark:hover:text-pink-400"
-            >Contact</a
-          >
-          <a
-            href="docs.html"
-            target="_blank"
-            rel="noopener"
-            class="hover:text-pink-600 dark:hover:text-pink-400"
-          >
-            Documentation
-          </a>
-
-          <button
-            id="theme-toggle"
-            class="ml-2 p-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 transition"
-            aria-label="Toggle theme"
-            title="Toggle dark/light"
-          >
-            🌙
-          </button>
-        </nav>
+<!-- Navigation -->
+<nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-500 rounded-lg flex items-center justify-center">
+        <i data-lucide="zap" class="w-5 h-5 text-white"></i>
       </div>
-    </header>
+      <span class="text-xl font-bold tracking-tight">StreamFusion</span>
+    </div>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+      <a href="#features" class="hover:text-purple-600 dark:hover:text-purple-400 transition">Features</a>
+      <a href="#ai" class="hover:text-purple-600 dark:hover:text-purple-400 transition">AI & MCP</a>
+      <a href="#connectors" class="hover:text-purple-600 dark:hover:text-purple-400 transition">Connectors</a>
+      <a href="docs.html" target="_blank" class="hover:text-purple-600 dark:hover:text-purple-400 transition">Documentation</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <button id="theme-toggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition" aria-label="Toggle theme">
+        <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+        <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+      </button>
+      <a href="#cta" class="hidden sm:block bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-lg text-sm font-semibold hover:opacity-90 transition">
+        Get Started
+      </a>
+    </div>
+  </div>
+</nav>
 
-    <!-- Hero -->
-    <section
-      id="home"
-      class="fade-section bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 text-white dark:from-gray-800 dark:via-gray-700 dark:to-gray-900 py-16"
-    >
-      <div
-        class="container mx-auto flex flex-col md:flex-row items-center justify-between px-6"
-      >
-        <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
-          <h2 class="text-4xl font-bold mb-3">Welcome to Stream Fusion</h2>
-          <p class="text-lg mb-6">
-            A vibrant platform for seamless integration and modern solutions.
-          </p>
-          <a
-            href="#features"
-            class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold shadow hover:bg-gray-100 transition"
-          >
-            Explore Features
-          </a>
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 overflow-hidden bg-grid">
+  <div class="container mx-auto px-6 text-center relative z-10">
+    <div class="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-4 py-1.5 rounded-full text-sm font-medium mb-6 border border-purple-200 dark:border-purple-800">
+      <i data-lucide="sparkles" class="w-4 h-4"></i>
+      Now supporting Model Context Protocol (MCP)
+    </div>
+    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+      The <span class="gradient-text">AI-Native</span><br>Integration Platform
+    </h1>
+    <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+      Connect legacy enterprise systems (SOAP, REST, SQL) and expose them as <strong>MCP tools</strong> for autonomous AI Agents. Build visually, execute flawlessly.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+      <a href="#cta" class="bg-gradient-to-r from-purple-600 to-blue-500 text-white px-8 py-3.5 rounded-xl font-semibold shadow-lg hover:shadow-purple-500/20 hover:scale-105 transition-all">
+        Start Building
+      </a>
+      <a href="docs.html" target="_blank" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-8 py-3.5 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
+        <i data-lucide="book-open" class="w-5 h-5"></i> Read Documentation
+      </a>
+    </div>
+
+    <!-- Workflow Canvas Mockup -->
+    <div class="relative w-full max-w-4xl mx-auto h-80 hidden md:block">
+      <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 180 120 C 280 120, 280 160, 380 160" fill="none" stroke="url(#grad1)" stroke-width="3" class="node-line" />
+        <path d="M 520 160 C 620 160, 620 120, 720 120" fill="none" stroke="url(#grad1)" stroke-width="3" class="node-line" />
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#8b5cf6" />
+            <stop offset="100%" stop-color="#38bdf8" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <!-- Node 1 -->
+      <div class="absolute left-10 top-20 bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 w-52 glow-box">
+        <div class="flex items-center gap-2 mb-1">
+          <div class="w-6 h-6 bg-blue-100 dark:bg-blue-900/50 rounded flex items-center justify-center">
+            <i data-lucide="ticket" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+          </div>
+          <span class="font-semibold text-sm">Jira Trigger</span>
         </div>
-        <div class="md:w-1/2 flex justify-center">
-          <img
-            src="logo-1.png"
-            alt="Stream Fusion Logo"
-            class="w-64 h-64 md:w-80 md:h-80 drop-shadow-lg"
-          />
-        </div>
+        <div class="text-xs text-slate-500 dark:text-slate-400">On Issue Created</div>
       </div>
-    </section>
 
-    <!-- About -->
-    <section
-      id="about"
-      class="fade-section container mx-auto py-14 px-6 text-center"
-    >
-      <h2 class="text-3xl font-semibold mb-4">About</h2>
-      <p
-        class="text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto"
-      >
-        Stream Fusion is a modern platform designed for enterprise integration,
-        built with scalability and innovation in mind.
+      <!-- Node 2 (AI) -->
+      <div class="absolute left-1/2 -translate-x-1/2 top-28 bg-gradient-to-br from-purple-600 to-blue-500 p-4 rounded-xl border border-purple-400 w-60 text-white glow-box animate-float">
+        <div class="flex items-center gap-2 mb-1">
+          <div class="w-6 h-6 bg-white/20 rounded flex items-center justify-center">
+            <i data-lucide="brain" class="w-4 h-4"></i>
+          </div>
+          <span class="font-semibold text-sm">AI Agent (MCP)</span>
+        </div>
+        <div class="text-xs opacity-80">Analyze & Route via Function Calling</div>
+      </div>
+
+      <!-- Node 3 -->
+      <div class="absolute right-10 top-20 bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 w-52 glow-box">
+        <div class="flex items-center gap-2 mb-1">
+          <div class="w-6 h-6 bg-green-100 dark:bg-green-900/50 rounded flex items-center justify-center">
+            <i data-lucide="database" class="w-4 h-4 text-green-600 dark:text-green-400"></i>
+          </div>
+          <span class="font-semibold text-sm">PostgreSQL</span>
+        </div>
+        <div class="text-xs text-slate-500 dark:text-slate-400">INSERT INTO logs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Integration Cloud -->
+<section class="py-12 border-y border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50">
+  <div class="container mx-auto px-6">
+    <p class="text-center text-sm font-medium text-slate-500 dark:text-slate-400 mb-8 uppercase tracking-wider">Native support for enterprise protocols & AI models</p>
+    <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 opacity-70">
+      <div class="flex items-center gap-2 text-xl font-bold text-slate-400 dark:text-slate-500"><i data-lucide="file-code-2" class="w-6 h-6"></i> Swagger/OpenAPI</div>
+      <div class="flex items-center gap-2 text-xl font-bold text-slate-400 dark:text-slate-500"><i data-lucide="file-json" class="w-6 h-6"></i> WSDL/SOAP</div>
+      <div class="flex items-center gap-2 text-xl font-bold text-slate-400 dark:text-slate-500"><i data-lucide="database" class="w-6 h-6"></i> JDBC (SQL)</div>
+      <div class="flex items-center gap-2 text-xl font-bold text-slate-400 dark:text-slate-500"><i data-lucide="brain" class="w-6 h-6"></i> OpenAI</div>
+      <div class="flex items-center gap-2 text-xl font-bold text-slate-400 dark:text-slate-500"><i data-lucide="bot" class="w-6 h-6"></i> Anthropic</div>
+      <div class="flex items-center gap-2 text-xl font-bold text-slate-400 dark:text-slate-500"><i data-lucide="search" class="w-6 h-6"></i> OpenSearch</div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Grid -->
+<section id="features" class="py-24 bg-slate-50 dark:bg-slate-950">
+  <div class="container mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-4xl font-bold mb-4">Everything you need to automate enterprise workflows</h2>
+      <p class="text-lg text-slate-600 dark:text-slate-400">From legacy SOAP services to cutting-edge AI agents, StreamFusion provides the building blocks for modern integration.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Card 1 -->
+      <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box">
+        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center mb-6">
+          <i data-lucide="brain-circuit" class="w-6 h-6 text-purple-600 dark:text-purple-400"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Agentic AI & MCP</h3>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Expose any enterprise system (Jira, ALM, Databases) as a Model Context Protocol (MCP) tool. Let AI agents interact with your data natively.</p>
+      </div>
+      <!-- Card 2 -->
+      <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box">
+        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-6">
+          <i data-lucide="layers" class="w-6 h-6 text-blue-600 dark:text-blue-400"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3">RAG & Vector Stores</h3>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Build powerful Retrieval-Augmented Generation pipelines with built-in embedding stores, chat memory, and response streaming.</p>
+      </div>
+      <!-- Card 3 -->
+      <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box">
+        <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900/30 rounded-xl flex items-center justify-center mb-6">
+          <i data-lucide="plug" class="w-6 h-6 text-pink-600 dark:text-pink-400"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Universal Connectors</h3>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Native support for Swagger/OpenAPI, WSDL/SOAP, and JDBC. Auto-generate request bodies and extract endpoints dynamically.</p>
+      </div>
+      <!-- Card 4 -->
+      <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box">
+        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center mb-6">
+          <i data-lucide="workflow" class="w-6 h-6 text-green-600 dark:text-green-400"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Visual Workflow Engine</h3>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Design complex integration flows with a node-based UI. Map data seamlessly between REST, SOAP, and SQL operations.</p>
+      </div>
+      <!-- Card 5 -->
+      <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box">
+        <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mb-6">
+          <i data-lucide="shield-check" class="w-6 h-6 text-orange-600 dark:text-orange-400"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Structured Guardrails</h3>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Ensure AI responses are perfectly formatted for your enterprise systems with built-in validation, guardrails, and structured outputs.</p>
+      </div>
+      <!-- Card 6 -->
+      <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box">
+        <div class="w-12 h-12 bg-cyan-100 dark:bg-cyan-900/30 rounded-xl flex items-center justify-center mb-6">
+          <i data-lucide="server" class="w-6 h-6 text-cyan-600 dark:text-cyan-400"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Self-Hosted & Secure</h3>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Deploy on your own infrastructure. Powered by Jetty for secure execution and OpenSearch for comprehensive, searchable logging.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Deep Dive 1: AI -->
+<section id="ai" class="py-24 bg-white dark:bg-slate-900/50">
+  <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+    <div>
+      <div class="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+        AI Architecture
+      </div>
+      <h2 class="text-4xl font-bold mb-6">Built for the <span class="gradient-text">Agentic Future</span></h2>
+      <p class="text-lg text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+        StreamFusion isn't just an iPaaS; it's the bridge between your enterprise data and AI. With native <strong>MCP (Model Context Protocol)</strong> support, Function Calling, and RAG capabilities, your AI agents can securely query databases, update Jira tickets, and parse complex SOAP responses.
       </p>
-    </section>
+      <ul class="space-y-4">
+        <li class="flex items-start gap-3">
+          <i data-lucide="check-circle-2" class="w-6 h-6 text-green-500 mt-0.5"></i>
+          <span><strong>Tools & Function Calling:</strong> Let LLMs execute real-world actions via your custom operations.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i data-lucide="check-circle-2" class="w-6 h-6 text-green-500 mt-0.5"></i>
+          <span><strong>Chat Memory & Streaming:</strong> Maintain context across long-running enterprise workflows.</span>
+        </li>
+      </ul>
+    </div>
+    <div class="bg-slate-100 dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 glow-box">
+      <div class="bg-slate-900 dark:bg-slate-950 rounded-xl p-6 font-mono text-sm text-slate-300 shadow-2xl">
+        <div class="flex gap-2 mb-4">
+          <div class="w-3 h-3 rounded-full bg-red-500"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+          <div class="w-3 h-3 rounded-full bg-green-500"></div>
+        </div>
+        <pre class="overflow-x-auto">
+<span class="text-purple-400">const</span> agent = <span class="text-blue-400">new</span> <span class="text-green-400">AIAgent</span>({
+  model: <span class="text-orange-400">"claude-3-opus"</span>,
+  tools: [
+    <span class="text-green-400">"jira_create_ticket"</span>,
+    <span class="text-green-400">"db_execute_query"</span>,
+    <span class="text-green-400">"soap_invoke_wsdl"</span>
+  ],
+  guardrails: <span class="text-purple-400">true</span>
+});
 
-    <!-- Features -->
-    <section
-      id="features"
-      class="fade-section bg-gray-100 dark:bg-gray-800 py-16 px-6"
-    >
-      <div class="container mx-auto text-center">
-        <h2 class="text-3xl font-semibold mb-10">Features</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div
-            class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition"
-          >
-            <h3
-              class="text-xl font-bold mb-2 text-purple-600 dark:text-pink-400"
-            >
-              Seamless Integration
-            </h3>
-            <p class="text-gray-600 dark:text-gray-300">
-              Connect all your systems and apps with ease for a unified
-              experience.
-            </p>
-          </div>
-          <div
-            class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition"
-          >
-            <h3
-              class="text-xl font-bold mb-2 text-purple-600 dark:text-pink-400"
-            >
-              Scalable Design
-            </h3>
-            <p class="text-gray-600 dark:text-gray-300">
-              Stream Fusion is built to grow with your business needs
-              effortlessly.
-            </p>
-          </div>
-          <div
-            class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition"
-          >
-            <h3
-              class="text-xl font-bold mb-2 text-purple-600 dark:text-pink-400"
-            >
-              Modern & Vibrant
-            </h3>
-            <p class="text-gray-600 dark:text-gray-300">
-              A clean, colorful, and tech-forward design that represents
-              innovation.
-            </p>
-          </div>
+<span class="text-slate-500">// AI safely interacts with legacy systems</span>
+<span class="text-blue-400">await</span> agent.run(<span class="text-orange-400">"Fix the DB latency issue"</span>);</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Deep Dive 2: Connectors -->
+<section id="connectors" class="py-24 bg-slate-50 dark:bg-slate-950">
+  <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+    <div class="order-2 md:order-1 bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+          <i data-lucide="file-json" class="w-8 h-8 text-blue-500 mb-2"></i>
+          <h4 class="font-bold text-sm">Swagger Parser</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Auto-generate JSON bodies from OpenAPI schemas.</p>
+        </div>
+        <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+          <i data-lucide="file-code-2" class="w-8 h-8 text-purple-500 mb-2"></i>
+          <h4 class="font-bold text-sm">WSDL4J Engine</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Extract SOAPActions and build XML templates.</p>
+        </div>
+        <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+          <i data-lucide="database" class="w-8 h-8 text-green-500 mb-2"></i>
+          <h4 class="font-bold text-sm">JDBC Universal</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Convert ResultSet to clean JSON for AI agents.</p>
+        </div>
+        <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+          <i data-lucide="key" class="w-8 h-8 text-orange-500 mb-2"></i>
+          <h4 class="font-bold text-sm">Dynamic Auth</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Handle OAuth, Basic, Bearer, and API Keys.</p>
         </div>
       </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="fade-section py-16 px-6">
-      <div class="container mx-auto text-center">
-        <h2 class="text-3xl font-semibold mb-6">Contact</h2>
-        <p class="mb-4">Have questions? Reach out via email:</p>
-        <a
-          href="mailto:contact@streamfusion.in"
-          class="text-purple-600 dark:text-pink-400 font-semibold hover:underline"
-        >
-          contact@streamfusion.in
-        </a>
-
-        <form
-          class="mt-8 max-w-xl mx-auto text-left bg-white dark:bg-gray-700 p-6 rounded-xl shadow"
-        >
-          <div class="mb-4">
-            <label class="block mb-2 font-medium" for="name">Name</label>
-            <input
-              id="name"
-              type="text"
-              class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white"
-              placeholder="Your name"
-            />
-          </div>
-          <div class="mb-4">
-            <label class="block mb-2 font-medium" for="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white"
-              placeholder="Your email"
-            />
-          </div>
-          <div class="mb-4">
-            <label class="block mb-2 font-medium" for="message">Message</label>
-            <textarea
-              id="message"
-              rows="4"
-              class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white"
-              placeholder="Your message"
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            class="bg-purple-600 dark:bg-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-purple-700 dark:hover:bg-pink-600 transition"
-          >
-            Send Message
-          </button>
-        </form>
+    </div>
+    <div class="order-1 md:order-2">
+      <div class="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+        Enterprise Connectors
       </div>
-    </section>
+      <h2 class="text-4xl font-bold mb-6">Tame Your <span class="gradient-text">Legacy Systems</span></h2>
+      <p class="text-lg text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+        Don't let old WSDL/SOAP services hold you back. StreamFusion dynamically parses WSDL files and Swagger specs, auto-generates XML/JSON templates, and handles dynamic authentication, turning rigid legacy APIs into modern, AI-ready tools.
+      </p>
+      <a href="docs.html" target="_blank" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:underline">
+        Explore Connectors <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer: light default, dark variant -->
-    <footer
-      class="bg-white text-gray-900 border-t border-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-700 text-center py-4 mt-8"
-    >
+<!-- CTA Section -->
+<section id="cta" class="py-24 bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 text-white relative overflow-hidden">
+  <div class="absolute inset-0 bg-grid opacity-10"></div>
+  <div class="container mx-auto px-6 text-center relative z-10">
+    <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to automate your enterprise?</h2>
+    <p class="text-xl opacity-90 max-w-2xl mx-auto mb-10">
+      Join the next generation of integration. Build AI agents that actually understand your legacy systems.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#" class="bg-white text-purple-600 px-8 py-4 rounded-xl font-bold shadow-xl hover:scale-105 transition-all">
+        Get Started for Free
+      </a>
+      <a href="docs.html" target="_blank" class="bg-transparent border-2 border-white/50 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition-all">
+        Read the Docs
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-slate-900 text-slate-400 py-16 border-t border-slate-800">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      <div class="col-span-2">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-500 rounded-lg flex items-center justify-center">
+            <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+          </div>
+          <span class="text-xl font-bold text-white tracking-tight">StreamFusion</span>
+        </div>
+        <p class="text-sm max-w-xs leading-relaxed">
+          The AI-native integration platform for enterprise. Connecting legacy systems to the future of AI agents.
+        </p>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4">Product</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#features" class="hover:text-white transition">Features</a></li>
+          <li><a href="#ai" class="hover:text-white transition">AI & MCP</a></li>
+          <li><a href="#connectors" class="hover:text-white transition">Connectors</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4">Resources</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="docs.html" target="_blank" class="hover:text-white transition">Documentation</a></li>
+          <li><a href="#" class="hover:text-white transition">GitHub</a></li>
+          <li><a href="mailto:contact@streamfusion.in" class="hover:text-white transition">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
       <p>&copy; 2025 Stream Fusion. All rights reserved.</p>
-    </footer>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-white transition">Privacy Policy</a>
+        <a href="#" class="hover:text-white transition">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-    <!-- Scripts AFTER DOM -->
-    <script src="script.js" defer></script>
-  </body>
+<!-- Scripts -->
+<script>
+  // Initialize Lucide Icons
+  lucide.createIcons();
+
+  // Dark Mode Toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+
+  // Check local storage or system preference
+  if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      html.classList.add('dark');
+  }
+
+  themeToggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      if (html.classList.contains('dark')) {
+          localStorage.setItem('theme', 'dark');
+      } else {
+          localStorage.setItem('theme', 'light');
+      }
+  });
+</script>
+</body>
 </html>
