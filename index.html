@@ -48,10 +48,10 @@
         background-image: linear-gradient(to right, rgba(139, 92, 246, 0.15) 1px, transparent 1px),
                           linear-gradient(to bottom, rgba(139, 92, 246, 0.15) 1px, transparent 1px);
     }
-    .glow-box { box-shadow: 0 0 40px rgba(139, 92, 246, 0.1); transition: all 0.3s ease; }
-    .glow-box:hover { box-shadow: 0 0 60px rgba(139, 92, 246, 0.25); transform: translateY(-5px); }
-    .dark .glow-box { box-shadow: 0 0 40px rgba(139, 92, 246, 0.2); }
-    .dark .glow-box:hover { box-shadow: 0 0 60px rgba(139, 92, 246, 0.4); }
+    .glow-box { box-shadow: 0 0 40px rgba(139, 92, 246, 0.05); transition: all 0.3s ease; }
+    .glow-box:hover { box-shadow: 0 0 60px rgba(139, 92, 246, 0.15); transform: translateY(-5px); }
+    .dark .glow-box { box-shadow: 0 0 40px rgba(139, 92, 246, 0.1); }
+    .dark .glow-box:hover { box-shadow: 0 0 60px rgba(139, 92, 246, 0.3); }
     .node-line { stroke-dasharray: 8; animation: dash 20s linear infinite; }
   </style>
 </head>
@@ -67,9 +67,10 @@
       <span class="text-xl font-bold tracking-tight">StreamFusion</span>
     </div>
     <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+      <a href="#integrations" class="hover:text-purple-600 dark:hover:text-purple-400 transition">Integrations</a>
+      <a href="#ecosystem" class="hover:text-purple-600 dark:hover:text-purple-400 transition">Ecosystem</a>
+      <a href="#industries" class="hover:text-purple-600 dark:hover:text-purple-400 transition">Industries</a>
       <a href="#features" class="hover:text-purple-600 dark:hover:text-purple-400 transition">Features</a>
-      <a href="#workflows" class="hover:text-purple-600 dark:hover:text-purple-400 transition">Workflows</a>
-      <a href="#connectors" class="hover:text-purple-600 dark:hover:text-purple-400 transition">Connectors</a>
       <a href="docs.html" target="_blank" class="hover:text-purple-600 dark:hover:text-purple-400 transition">Documentation</a>
     </div>
     <div class="flex items-center gap-4">
@@ -95,7 +96,7 @@
       The Modern<br><span class="gradient-text">Integration Platform</span>
     </h1>
     <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-      Connect legacy enterprise systems (SOAP, REST, SQL) and automate complex workflows visually. Build seamlessly, execute flawlessly.
+      Connect your favorite apps, legacy enterprise systems, and databases. Automate complex workflows visually. Build seamlessly, execute flawlessly.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
       <a href="#cta" class="bg-gradient-to-r from-purple-600 to-blue-500 text-white px-8 py-3.5 rounded-xl font-semibold shadow-lg hover:shadow-purple-500/20 hover:scale-105 transition-all">
@@ -123,11 +124,11 @@
       <div class="absolute left-10 top-20 bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 w-52 glow-box">
         <div class="flex items-center gap-2 mb-1">
           <div class="w-6 h-6 bg-blue-100 dark:bg-blue-900/50 rounded flex items-center justify-center">
-            <i data-lucide="ticket" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+            <i data-lucide="webhook" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
           </div>
-          <span class="font-semibold text-sm">Jira Trigger</span>
+          <span class="font-semibold text-sm">Webhook Trigger</span>
         </div>
-        <div class="text-xs text-slate-500 dark:text-slate-400">On Issue Created</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400">On New Payload</div>
       </div>
 
       <!-- Node 2 (Data Transformer) -->
@@ -144,28 +145,302 @@
       <!-- Node 3 -->
       <div class="absolute right-10 top-20 bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 w-52 glow-box">
         <div class="flex items-center gap-2 mb-1">
-          <div class="w-6 h-6 bg-green-100 dark:bg-green-900/50 rounded flex items-center justify-center">
-            <i data-lucide="database" class="w-4 h-4 text-green-600 dark:text-green-400"></i>
+          <div class="w-6 h-6 bg-purple-100 dark:bg-purple-900/50 rounded flex items-center justify-center">
+            <i data-lucide="slack" class="w-4 h-4 text-purple-600 dark:text-purple-400"></i>
           </div>
-          <span class="font-semibold text-sm">PostgreSQL</span>
+          <span class="font-semibold text-sm">Slack</span>
         </div>
-        <div class="text-xs text-slate-500 dark:text-slate-400">INSERT INTO logs</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400">Send Alert to #ops</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Integration Cloud -->
-<section class="py-12 border-y border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50">
+<!-- NEW: Integrations Grid (n8n style) -->
+<section id="integrations" class="py-24 bg-white dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-800">
   <div class="container mx-auto px-6">
-    <p class="text-center text-sm font-medium text-slate-500 dark:text-slate-400 mb-8 uppercase tracking-wider">Native support for enterprise protocols & modern APIs</p>
-    <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 opacity-70">
-      <div class="flex items-center gap-2 text-xl font-bold text-slate-400 dark:text-slate-500"><i data-lucide="file-code-2" class="w-6 h-6"></i> Swagger/OpenAPI</div>
-      <div class="flex items-center gap-2 text-xl font-bold text-slate-400 dark:text-slate-500"><i data-lucide="file-json" class="w-6 h-6"></i> WSDL/SOAP</div>
-      <div class="flex items-center gap-2 text-xl font-bold text-slate-400 dark:text-slate-500"><i data-lucide="database" class="w-6 h-6"></i> JDBC (SQL)</div>
-      <div class="flex items-center gap-2 text-xl font-bold text-slate-400 dark:text-slate-500"><i data-lucide="globe" class="w-6 h-6"></i> REST APIs</div>
-      <div class="flex items-center gap-2 text-xl font-bold text-slate-400 dark:text-slate-500"><i data-lucide="webhook" class="w-6 h-6"></i> Webhooks</div>
-      <div class="flex items-center gap-2 text-xl font-bold text-slate-400 dark:text-slate-500"><i data-lucide="search" class="w-6 h-6"></i> OpenSearch</div>
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <h2 class="text-4xl font-bold mb-4">Connect Your <span class="gradient-text">Favorite Apps</span></h2>
+      <p class="text-lg text-slate-600 dark:text-slate-400">Browse our extensive library of native nodes and connectors. If it has an API, StreamFusion can automate it.</p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="max-w-md mx-auto mb-12 relative">
+      <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"></i>
+      <input type="text" placeholder="Search 500+ integrations..." class="w-full pl-12 pr-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-purple-500 text-slate-900 dark:text-white">
+    </div>
+
+    <!-- Integrations Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-5xl mx-auto mb-12">
+      <!-- Slack -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="slack" class="w-6 h-6 text-purple-600 dark:text-purple-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Slack</span>
+      </div>
+      <!-- Google Sheets -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="table" class="w-6 h-6 text-green-600 dark:text-green-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Google Sheets</span>
+      </div>
+      <!-- HubSpot -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="megaphone" class="w-6 h-6 text-orange-600 dark:text-orange-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">HubSpot</span>
+      </div>
+      <!-- Airtable -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="layout-grid" class="w-6 h-6 text-yellow-600 dark:text-yellow-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Airtable</span>
+      </div>
+      <!-- Telegram -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="send" class="w-6 h-6 text-blue-600 dark:text-blue-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Telegram</span>
+      </div>
+      <!-- Notion -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="book-marked" class="w-6 h-6 text-slate-600 dark:text-slate-300"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Notion</span>
+      </div>
+      <!-- PostgreSQL -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="database" class="w-6 h-6 text-blue-600 dark:text-blue-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">PostgreSQL</span>
+      </div>
+      <!-- MySQL -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-sky-100 dark:bg-sky-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="database" class="w-6 h-6 text-sky-600 dark:text-sky-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">MySQL</span>
+      </div>
+      <!-- HTTP Request -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="globe" class="w-6 h-6 text-gray-600 dark:text-gray-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">HTTP Request</span>
+      </div>
+      <!-- Webhook -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="webhook" class="w-6 h-6 text-pink-600 dark:text-pink-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Webhook</span>
+      </div>
+      <!-- GitHub -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-slate-800 dark:bg-slate-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="github" class="w-6 h-6 text-white dark:text-white"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">GitHub</span>
+      </div>
+      <!-- Discord -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="message-square" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Discord</span>
+      </div>
+      <!-- Jira -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="ticket" class="w-6 h-6 text-blue-600 dark:text-blue-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Jira</span>
+      </div>
+      <!-- Salesforce -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-sky-100 dark:bg-sky-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="cloud" class="w-6 h-6 text-sky-600 dark:text-sky-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Salesforce</span>
+      </div>
+      <!-- Gmail -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="mail" class="w-6 h-6 text-red-600 dark:text-red-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Gmail</span>
+      </div>
+      <!-- OpenAI -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="sparkles" class="w-6 h-6 text-slate-600 dark:text-slate-300"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">OpenAI</span>
+      </div>
+      <!-- Stripe -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="credit-card" class="w-6 h-6 text-purple-600 dark:text-purple-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Stripe</span>
+      </div>
+      <!-- Shopify -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-purple-500 dark:hover:border-purple-400 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition">
+          <i data-lucide="shopping-bag" class="w-6 h-6 text-green-600 dark:text-green-400"></i>
+        </div>
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Shopify</span>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <a href="#" class="inline-flex items-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition">
+        Explore all integrations <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Enterprise Ecosystem -->
+<section id="ecosystem" class="py-24 bg-slate-50 dark:bg-slate-950">
+  <div class="container mx-auto px-6 text-center">
+    <div class="max-w-3xl mx-auto mb-16">
+      <h2 class="text-4xl font-bold mb-4">Connect Your Entire <span class="gradient-text">Enterprise Ecosystem</span></h2>
+      <p class="text-lg text-slate-600 dark:text-slate-400">Seamlessly integrate with the world's leading enterprise applications. From ERP and CRM to DevOps and accounting, StreamFusion bridges the gap between your critical systems.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 glow-box">
+        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+          <i data-lucide="building-2" class="w-6 h-6 text-blue-600 dark:text-blue-400"></i>
+        </div>
+        <span class="font-semibold text-slate-700 dark:text-slate-300">SAP</span>
+      </div>
+      <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 glow-box">
+        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+          <i data-lucide="calculator" class="w-6 h-6 text-green-600 dark:text-green-400"></i>
+        </div>
+        <span class="font-semibold text-slate-700 dark:text-slate-300">QuickBooks</span>
+      </div>
+      <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 glow-box">
+        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+          <i data-lucide="git-branch" class="w-6 h-6 text-purple-600 dark:text-purple-400"></i>
+        </div>
+        <span class="font-semibold text-slate-700 dark:text-slate-300">Copado</span>
+      </div>
+      <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 glow-box">
+        <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center">
+          <i data-lucide="headset" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i>
+        </div>
+        <span class="font-semibold text-slate-700 dark:text-slate-300">ServiceNow</span>
+      </div>
+      <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 glow-box">
+        <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center">
+          <i data-lucide="users" class="w-6 h-6 text-orange-600 dark:text-orange-400"></i>
+        </div>
+        <span class="font-semibold text-slate-700 dark:text-slate-300">Workday</span>
+      </div>
+      <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 glow-box">
+        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
+          <i data-lucide="briefcase" class="w-6 h-6 text-emerald-600 dark:text-emerald-400"></i>
+        </div>
+        <span class="font-semibold text-slate-700 dark:text-slate-300">NetSuite</span>
+      </div>
+      <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 glow-box">
+        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+          <i data-lucide="ticket" class="w-6 h-6 text-blue-600 dark:text-blue-400"></i>
+        </div>
+        <span class="font-semibold text-slate-700 dark:text-slate-300">Jira</span>
+      </div>
+      <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 glow-box">
+        <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center">
+          <i data-lucide="server" class="w-6 h-6 text-orange-600 dark:text-orange-400"></i>
+        </div>
+        <span class="font-semibold text-slate-700 dark:text-slate-300">Oracle DB</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Industries -->
+<section id="industries" class="py-24 bg-white dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+  <div class="container mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-4xl font-bold mb-4">Empowering <span class="gradient-text">Every Industry</span></h2>
+      <p class="text-lg text-slate-600 dark:text-slate-400">From high-frequency trading floors to global supply chains, StreamFusion provides the secure, scalable integration backbone that critical industries rely on.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box group">
+        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <i data-lucide="landmark" class="w-6 h-6 text-green-600 dark:text-green-400"></i>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Finance & ATM Networks</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Secure, low-latency transaction routing, fraud detection pipelines, and legacy mainframe integration for global banking.</p>
+      </div>
+
+      <div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box group">
+        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <i data-lucide="shopping-bag" class="w-6 h-6 text-blue-600 dark:text-blue-400"></i>
+        </div>
+        <h3 class="text-lg font-bold mb-2">E-commerce</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Real-time inventory synchronization, automated order processing, and seamless payment gateway orchestration.</p>
+      </div>
+
+      <div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box group">
+        <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <i data-lucide="store" class="w-6 h-6 text-orange-600 dark:text-orange-400"></i>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Retail</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Omnichannel data unification, connecting Point-of-Sale (POS) systems with supply chain, ERP, and CRM platforms.</p>
+      </div>
+
+      <div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box group">
+        <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900/30 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <i data-lucide="trending-up" class="w-6 h-6 text-pink-600 dark:text-pink-400"></i>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Sales & Marketing</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Automating lead routing, CRM data enrichment, and quote-to-cash workflows across disparate marketing systems.</p>
+      </div>
+
+      <div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box group">
+        <div class="w-12 h-12 bg-slate-200 dark:bg-slate-700 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <i data-lucide="car" class="w-6 h-6 text-slate-700 dark:text-slate-300"></i>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Automobile</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Connecting manufacturing IoT sensors, supply chain logistics, and dealership management systems in real-time.</p>
+      </div>
+
+      <div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box group">
+        <div class="w-12 h-12 bg-sky-100 dark:bg-sky-900/30 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <i data-lucide="plane" class="w-6 h-6 text-sky-600 dark:text-sky-400"></i>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Aviation</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Real-time flight data aggregation, crew scheduling APIs, and Passenger Service System (PSS) integration.</p>
+      </div>
+
+      <div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box group">
+        <div class="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <i data-lucide="heart-pulse" class="w-6 h-6 text-red-600 dark:text-red-400"></i>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Healthcare</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Secure, HIPAA-compliant HL7/FHIR data exchange and electronic health record (EHR) synchronization.</p>
+      </div>
+
+      <div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box group">
+        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <i data-lucide="cpu" class="w-6 h-6 text-purple-600 dark:text-purple-400"></i>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Modern AI & ML</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Powering the data pipelines, API gateways, and vector store integrations that fuel next-generation machine learning models.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -178,7 +453,6 @@
       <p class="text-lg text-slate-600 dark:text-slate-400">From legacy SOAP services to modern REST APIs, StreamFusion provides the building blocks for robust, scalable integration.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Card 1 -->
       <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box">
         <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center mb-6">
           <i data-lucide="workflow" class="w-6 h-6 text-purple-600 dark:text-purple-400"></i>
@@ -186,7 +460,6 @@
         <h3 class="text-xl font-bold mb-3">Visual Workflow Engine</h3>
         <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Design complex integration flows with an intuitive node-based UI. Map data seamlessly between different systems without writing boilerplate code.</p>
       </div>
-      <!-- Card 2 -->
       <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box">
         <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-6">
           <i data-lucide="zap" class="w-6 h-6 text-blue-600 dark:text-blue-400"></i>
@@ -194,7 +467,6 @@
         <h3 class="text-xl font-bold mb-3">Event-Driven Triggers</h3>
         <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Kick off workflows instantly with webhooks, scheduled cron jobs, or real-time event listeners from your favorite enterprise tools.</p>
       </div>
-      <!-- Card 3 -->
       <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box">
         <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900/30 rounded-xl flex items-center justify-center mb-6">
           <i data-lucide="plug" class="w-6 h-6 text-pink-600 dark:text-pink-400"></i>
@@ -202,7 +474,6 @@
         <h3 class="text-xl font-bold mb-3">Universal Connectors</h3>
         <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Native support for Swagger/OpenAPI, WSDL/SOAP, and JDBC. Auto-generate request bodies and extract endpoints dynamically.</p>
       </div>
-      <!-- Card 4 -->
       <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box">
         <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center mb-6">
           <i data-lucide="shuffle" class="w-6 h-6 text-green-600 dark:text-green-400"></i>
@@ -210,7 +481,6 @@
         <h3 class="text-xl font-bold mb-3">Advanced Data Mapping</h3>
         <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Transform JSON, XML, and SQL result sets on the fly. Use built-in expressions to filter, format, and route data exactly where it needs to go.</p>
       </div>
-      <!-- Card 5 -->
       <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box">
         <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mb-6">
           <i data-lucide="shield-check" class="w-6 h-6 text-orange-600 dark:text-orange-400"></i>
@@ -218,7 +488,6 @@
         <h3 class="text-xl font-bold mb-3">Robust Error Handling</h3>
         <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Build resilient workflows with automatic retries, fallback paths, and structured error logging powered by OpenSearch.</p>
       </div>
-      <!-- Card 6 -->
       <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 glow-box">
         <div class="w-12 h-12 bg-cyan-100 dark:bg-cyan-900/30 rounded-xl flex items-center justify-center mb-6">
           <i data-lucide="server" class="w-6 h-6 text-cyan-600 dark:text-cyan-400"></i>
@@ -355,9 +624,10 @@
       <div>
         <h4 class="text-white font-semibold mb-4">Product</h4>
         <ul class="space-y-2 text-sm">
+          <li><a href="#integrations" class="hover:text-white transition">Integrations</a></li>
+          <li><a href="#ecosystem" class="hover:text-white transition">Ecosystem</a></li>
+          <li><a href="#industries" class="hover:text-white transition">Industries</a></li>
           <li><a href="#features" class="hover:text-white transition">Features</a></li>
-          <li><a href="#workflows" class="hover:text-white transition">Workflows</a></li>
-          <li><a href="#connectors" class="hover:text-white transition">Connectors</a></li>
         </ul>
       </div>
       <div>
