@@ -205,6 +205,52 @@
     .float-node:nth-child(6) { animation-delay: -5s; }
     .float-node:nth-child(7) { animation-delay: -6s; }
     .float-node:nth-child(8) { animation-delay: -7s; }
+
+    /* Architecture data flow animations */
+    .data-packet {
+      animation: dataFlow 2s ease-in-out infinite;
+    }
+
+    @keyframes dataFlow {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateY(20px) scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    .data-packet:nth-child(2) { animation-delay: -0.5s; }
+    .data-packet:nth-child(3) { animation-delay: -1s; }
+    .data-packet:nth-child(4) { animation-delay: -1.5s; }
+
+    .flow-line {
+      stroke-dasharray: 5;
+      animation: flowLine 1.5s linear infinite;
+    }
+
+    @keyframes flowLine {
+      to {
+        stroke-dashoffset: -20;
+      }
+    }
+
+    .pulse-ring {
+      animation: pulseRing 2s ease-out infinite;
+    }
+
+    @keyframes pulseRing {
+      0% {
+        transform: scale(0.8);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body class="antialiased selection:bg-blue-500/30">
@@ -610,11 +656,14 @@
         </div>
       </div>
 
-      <!-- Architecture Diagram -->
+      <!-- Architecture Diagram with Animated Data Flow -->
       <div class="relative fade-in">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+          <!-- Background glow effect -->
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-b from-purple-500/5 via-transparent to-cyan-500/5 pointer-events-none"></div>
+
           <!-- Studio -->
-          <div class="bg-purple-500/10 border border-purple-500/30 rounded-2xl p-6 mb-6">
+          <div class="bg-purple-500/10 border border-purple-500/30 rounded-2xl p-6 mb-8 relative z-10">
             <div class="flex items-center gap-2 mb-4">
               <i data-lucide="cloud-cog" class="w-5 h-5 text-purple-400"></i>
               <h4 class="font-bold text-purple-300">Studio (Cloud/SaaS)</h4>
@@ -626,33 +675,78 @@
             </div>
           </div>
 
-          <!-- Connection -->
-          <div class="flex justify-center my-4">
-            <div class="w-1 h-16 bg-gradient-to-b from-purple-500 via-cyan-500 to-green-500 relative">
-              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg shadow-cyan-500/50 animate-pulse"></div>
+          <!-- Animated Connection with Data Flow -->
+          <div class="relative my-6 h-32">
+            <!-- SVG for animated data flow -->
+            <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="flowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#a855f7" stop-opacity="0.8"/>
+                  <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.8"/>
+                  <stop offset="100%" stop-color="#10b981" stop-opacity="0.8"/>
+                </linearGradient>
+                <filter id="glowFilter">
+                  <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- Main connection line -->
+              <line x1="50%" y1="0" x2="50%" y2="100%" stroke="url(#flowGradient)" stroke-width="3" opacity="0.6" filter="url(#glowFilter)"/>
+
+              <!-- Animated flow lines -->
+              <line x1="45%" y1="0" x2="45%" y2="100%" stroke="#a855f7" stroke-width="1" opacity="0.4" class="flow-line"/>
+              <line x1="55%" y1="0" x2="55%" y2="100%" stroke="#06b6d4" stroke-width="1" opacity="0.4" class="flow-line" style="animation-delay: -0.5s"/>
+              <line x1="42%" y1="0" x2="42%" y2="100%" stroke="#10b981" stroke-width="1" opacity="0.3" class="flow-line" style="animation-delay: -1s"/>
+              <line x1="58%" y1="0" x2="58%" y2="100%" stroke="#f59e0b" stroke-width="1" opacity="0.3" class="flow-line" style="animation-delay: -1.5s"/>
+            </svg>
+
+            <!-- Animated data packets -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-purple-500 rounded-full data-packet shadow-lg shadow-purple-500/50"></div>
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-cyan-500 rounded-full data-packet shadow-lg shadow-cyan-500/50"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 w-2 h-2 bg-green-500 rounded-full data-packet shadow-lg shadow-green-500/50"></div>
+            <div class="absolute top-3/4 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-yellow-500 rounded-full data-packet shadow-lg shadow-yellow-500/50"></div>
+
+            <!-- Center pulse indicator -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full flex items-center justify-center pulse-dot">
+              <div class="w-4 h-4 bg-white rounded-full"></div>
             </div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full pulse-ring"></div>
           </div>
 
           <!-- Data Plane -->
-          <div class="bg-cyan-500/10 border border-cyan-500/30 rounded-2xl p-6">
+          <div class="bg-cyan-500/10 border border-cyan-500/30 rounded-2xl p-6 relative z-10">
             <div class="flex items-center gap-2 mb-4">
               <i data-lucide="server" class="w-5 h-5 text-cyan-400"></i>
               <h4 class="font-bold text-cyan-300">Data Plane (Flexible Deployment)</h4>
             </div>
             <div class="space-y-2">
-              <div class="flex items-center gap-3 bg-slate-950/50 p-3 rounded-lg border border-slate-800">
-                <i data-lucide="building" class="w-4 h-4 text-green-400"></i>
+              <div class="flex items-center gap-3 bg-slate-950/50 p-3 rounded-lg border border-slate-800 hover:border-cyan-500/50 transition-colors group">
+                <i data-lucide="building" class="w-4 h-4 text-green-400 group-hover:scale-110 transition-transform"></i>
                 <span class="text-xs text-slate-400">On-Premise Data Center</span>
+                <div class="ml-auto w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               </div>
-              <div class="flex items-center gap-3 bg-slate-950/50 p-3 rounded-lg border border-slate-800">
-                <i data-lucide="cpu" class="w-4 h-4 text-blue-400"></i>
+              <div class="flex items-center gap-3 bg-slate-950/50 p-3 rounded-lg border border-slate-800 hover:border-cyan-500/50 transition-colors group">
+                <i data-lucide="cpu" class="w-4 h-4 text-blue-400 group-hover:scale-110 transition-transform"></i>
                 <span class="text-xs text-slate-400">Edge Computing Nodes</span>
+                <div class="ml-auto w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: -0.5s"></div>
               </div>
-              <div class="flex items-center gap-3 bg-slate-950/50 p-3 rounded-lg border border-slate-800">
-                <i data-lucide="cloud" class="w-4 h-4 text-purple-400"></i>
+              <div class="flex items-center gap-3 bg-slate-950/50 p-3 rounded-lg border border-slate-800 hover:border-cyan-500/50 transition-colors group">
+                <i data-lucide="cloud" class="w-4 h-4 text-purple-400 group-hover:scale-110 transition-transform"></i>
                 <span class="text-xs text-slate-400">Multi-Cloud (AWS/Azure/GCP)</span>
+                <div class="ml-auto w-2 h-2 bg-purple-500 rounded-full animate-pulse" style="animation-delay: -1s"></div>
               </div>
             </div>
+          </div>
+
+          <!-- Floating data indicators -->
+          <div class="absolute top-20 right-4 flex gap-1">
+            <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-ping"></div>
+            <div class="w-1.5 h-1.5 bg-purple-400 rounded-full animate-ping" style="animation-delay: -0.5s"></div>
+            <div class="w-1.5 h-1.5 bg-green-400 rounded-full animate-ping" style="animation-delay: -1s"></div>
           </div>
         </div>
       </div>
