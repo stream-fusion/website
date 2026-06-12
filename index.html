@@ -587,6 +587,386 @@
       0%, 100% { box-shadow: 0 4px 20px rgba(6, 182, 212, 0.2); border-color: rgba(6, 182, 212, 0.3); }
       50% { box-shadow: 0 4px 25px rgba(6, 182, 212, 0.5); border-color: rgba(6, 182, 212, 0.6); }
     }
+        /* Shine effect for footer logo section */
+    .footer-logo-shine {
+      position: relative;
+      overflow: hidden;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .footer-logo-shine::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(59, 130, 246, 0.2),
+        rgba(6, 182, 212, 0.3),
+        transparent
+      );
+      animation: shine 3s ease-in-out infinite;
+    }
+
+    .footer-logo-shine::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(6, 182, 212, 0.3), rgba(168, 85, 247, 0.3));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.5;
+      animation: borderGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes shine {
+      0% { left: -100%; }
+      50%, 100% { left: 100%; }
+    }
+
+    @keyframes borderGlow {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.7; }
+    }
+
+    .footer-logo-shine:hover {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+      border-color: rgba(59, 130, 246, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
+    }
+
+    .footer-logo-shine img {
+      filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4));
+      transition: filter 0.3s ease;
+    }
+
+    .footer-logo-shine:hover img {
+      filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.6));
+    }
+
+    .footer-brand-text {
+      background: linear-gradient(135deg, #ffffff 0%, #06b6d4 50%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: textShine 3s ease-in-out infinite;
+      background-size: 200% auto;
+    }
+
+    @keyframes textShine {
+      0%, 100% { background-position: 0% center; }
+      50% { background-position: 100% center; }
+    }
+        /* --- MODERN INDUSTRY CARDS --- */
+    .industry-card {
+      position: relative;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 24px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(12px);
+    }
+
+    /* Animated Gradient Border on Hover */
+    .industry-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 1px;
+      background: linear-gradient(135deg, transparent, var(--theme-color, #3b82f6), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    /* Ambient Glow Background */
+    .industry-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, var(--theme-color, #3b82f6) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .industry-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 30px -5px var(--theme-color, #3b82f6);
+    }
+
+    .industry-card:hover::before {
+      opacity: 1;
+    }
+
+    .industry-card:hover::after {
+      opacity: 0.15;
+    }
+
+    .industry-card-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .industry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .industry-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--theme-color, #3b82f6);
+      transition: all 0.4s ease;
+    }
+
+    .industry-card:hover .industry-icon-box {
+      background: var(--theme-color, #3b82f6);
+      color: white;
+      transform: scale(1.1) rotate(-5deg);
+      box-shadow: 0 0 20px var(--theme-color, #3b82f6);
+    }
+
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #10b981;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: rgba(16, 185, 129, 0.1);
+      padding: 4px 8px;
+      border-radius: 20px;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+      animation: livePulse 1.5s infinite;
+    }
+
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    .industry-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .industry-desc {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      min-height: 42px;
+    }
+
+    .industry-metrics {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .metric-label {
+      font-size: 10px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .metric-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--theme-color, #3b82f6);
+    }
+        /* --- HOLOGRAPHIC INDUSTRY VISUALIZATION --- */
+    .holo-canvas {
+      position: relative;
+      background: radial-gradient(circle at center, rgba(59, 130, 246, 0.03) 0%, transparent 70%);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    /* Subtle grid background */
+    .holo-canvas::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+      pointer-events: none;
+    }
+
+    /* Holographic Nodes */
+    .holo-node {
+      position: absolute;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 3px solid var(--node-color, #3b82f6);
+      border-radius: 12px;
+      padding: 12px 16px;
+      min-width: 140px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px var(--node-color, #3b82f6);
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .holo-node:hover {
+      transform: translateY(-5px) scale(1.05);
+      background: rgba(15, 23, 42, 0.9);
+      border-color: var(--node-color, #3b82f6);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 30px 0px var(--node-color, #3b82f6);
+    }
+
+    .holo-node-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .holo-node-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--node-color, #3b82f6);
+    }
+
+    .holo-node-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.5px;
+    }
+
+    .holo-node-metric {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--node-color, #3b82f6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 6px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .holo-status {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      animation: statusPulse 1.5s infinite;
+    }
+
+    /* SVG Path Styles */
+    .path-base {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.03);
+      stroke-width: 4;
+    }
+
+    .path-flow {
+      fill: none;
+      stroke: var(--path-color, #3b82f6);
+      stroke-width: 2;
+      stroke-dasharray: 8 12;
+      opacity: 0.6;
+      filter: drop-shadow(0 0 4px var(--path-color, #3b82f6));
+      animation: flowDash 1.5s linear infinite;
+    }
+
+    @keyframes flowDash {
+      to { stroke-dashoffset: -40; }
+    }
+
+    /* Radar Sweep Effect */
+    .radar-sweep {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent 0%, rgba(59, 130, 246, 0.1) 10%, transparent 20%);
+      animation: radarSpin 4s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes radarSpin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Expanding Rings */
+    .expanding-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 50%;
+      animation: expandRing 3s ease-out infinite;
+      pointer-events: none;
+    }
+    .expanding-ring:nth-child(2) { animation-delay: 1s; }
+    .expanding-ring:nth-child(3) { animation-delay: 2s; }
+
+    @keyframes expandRing {
+      0% { width: 100px; height: 100px; opacity: 0.5; }
+      100% { width: 500px; height: 500px; opacity: 0; }
+    }
   </style>
 </head>
 <body class="antialiased selection:bg-blue-500/30">
@@ -607,7 +987,7 @@
       <a href="#capabilities" class="hover:text-white transition">Capabilities</a>
       <a href="#architecture" class="hover:text-white transition">Architecture</a>
       <a href="#industries" class="hover:text-white transition">Industries</a>
-      <a href="#developers" class="hover:text-white transition">Developers</a>
+      <a href="#developers" class="hover:text-white transition">Omnibus</a>
       <a href="#pricing" class="hover:text-white transition">Pricing</a>
     </div>
 
@@ -1307,308 +1687,333 @@
     </div>
 
     <!-- Animated Data Flow Visualization Across Industries -->
-    <div class="relative w-full max-w-5xl mx-auto h-[500px] mb-16 fade-in hidden md:block">
-      <!-- Background glow -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-blue-600/10 via-cyan-500/10 to-green-500/10 rounded-full blur-[100px]"></div>
+    <!-- Holographic Data Flow Visualization -->
+    <div class="relative w-full max-w-5xl mx-auto h-[500px] mb-16 fade-in hidden md:block holo-canvas border border-white/5">
 
-      <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background Effects -->
+      <div class="radar-sweep"></div>
+      <div class="expanding-ring"></div>
+      <div class="expanding-ring"></div>
+      <div class="expanding-ring"></div>
+
+      <!-- SVG Connections Layer -->
+      <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <filter id="industryGlow">
-            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
+          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
-
-          <!-- Gradients for each industry stream -->
-          <linearGradient id="financeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#10b981"/>
-            <stop offset="100%" stop-color="#06b6d4"/>
-          </linearGradient>
-          <linearGradient id="ecommerceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#3b82f6"/>
-            <stop offset="100%" stop-color="#8b5cf6"/>
-          </linearGradient>
-          <linearGradient id="manufacturingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#f97316"/>
-            <stop offset="100%" stop-color="#ef4444"/>
-          </linearGradient>
-          <linearGradient id="healthcareGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ef4444"/>
-            <stop offset="100%" stop-color="#ec4899"/>
-          </linearGradient>
-          <linearGradient id="aviationGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#0ea5e9"/>
-            <stop offset="100%" stop-color="#6366f1"/>
-          </linearGradient>
-          <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#a855f7"/>
-            <stop offset="100%" stop-color="#ec4899"/>
-          </linearGradient>
-          <linearGradient id="autoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#eab308"/>
-            <stop offset="100%" stop-color="#f97316"/>
-          </linearGradient>
-          <linearGradient id="telecomGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#06b6d4"/>
-            <stop offset="100%" stop-color="#10b981"/>
-          </linearGradient>
         </defs>
 
-        <!-- Connection lines from center to each industry -->
-        <!-- Finance (top-left) -->
-        <path d="M 500 250 Q 350 200, 150 100" fill="none" stroke="url(#financeGrad)" stroke-width="2" class="industry-stream" filter="url(#industryGlow)"/>
-        <circle r="4" fill="#10b981" filter="url(#industryGlow)">
-          <animateMotion dur="3s" repeatCount="indefinite" path="M 500 250 Q 350 200, 150 100"/>
-        </circle>
-        <circle r="3" fill="#06b6d4" filter="url(#industryGlow)">
-          <animateMotion dur="3s" repeatCount="indefinite" path="M 500 250 Q 350 200, 150 100" begin="1s"/>
-        </circle>
+        <!-- Base Paths (Faint background lines) -->
+        <path d="M 500 250 Q 300 150, 150 100" class="path-base" />
+        <path d="M 500 250 Q 350 100, 300 80" class="path-base" />
+        <path d="M 500 250 Q 650 100, 700 80" class="path-base" />
+        <path d="M 500 250 Q 700 150, 850 100" class="path-base" />
+        <path d="M 500 250 Q 300 350, 150 400" class="path-base" />
+        <path d="M 500 250 Q 350 400, 300 420" class="path-base" />
+        <path d="M 500 250 Q 650 400, 700 420" class="path-base" />
+        <path d="M 500 250 Q 700 350, 850 400" class="path-base" />
 
-        <!-- E-commerce (top-center-left) -->
-        <path d="M 500 250 Q 400 180, 300 80" fill="none" stroke="url(#ecommerceGrad)" stroke-width="2" class="industry-stream" filter="url(#industryGlow)"/>
-        <circle r="4" fill="#3b82f6" filter="url(#industryGlow)">
-          <animateMotion dur="2.8s" repeatCount="indefinite" path="M 500 250 Q 400 180, 300 80"/>
-        </circle>
-        <circle r="3" fill="#8b5cf6" filter="url(#industryGlow)">
-          <animateMotion dur="2.8s" repeatCount="indefinite" path="M 500 250 Q 400 180, 300 80" begin="0.8s"/>
-        </circle>
+        <!-- Flow Paths (Animated dashed lines) -->
+        <path d="M 500 250 Q 300 150, 150 100" class="path-flow" style="--path-color: #10b981;" />
+        <path d="M 500 250 Q 350 100, 300 80" class="path-flow" style="--path-color: #3b82f6;" />
+        <path d="M 500 250 Q 650 100, 700 80" class="path-flow" style="--path-color: #f97316;" />
+        <path d="M 500 250 Q 700 150, 850 100" class="path-flow" style="--path-color: #ef4444;" />
+        <path d="M 500 250 Q 300 350, 150 400" class="path-flow" style="--path-color: #0ea5e9;" />
+        <path d="M 500 250 Q 350 400, 300 420" class="path-flow" style="--path-color: #a855f7;" />
+        <path d="M 500 250 Q 650 400, 700 420" class="path-flow" style="--path-color: #eab308;" />
+        <path d="M 500 250 Q 700 350, 850 400" class="path-flow" style="--path-color: #06b6d4;" />
 
-        <!-- Manufacturing (top-center-right) -->
-        <path d="M 500 250 Q 600 180, 700 80" fill="none" stroke="url(#manufacturingGrad)" stroke-width="2" class="industry-stream" filter="url(#industryGlow)"/>
-        <circle r="4" fill="#f97316" filter="url(#industryGlow)">
-          <animateMotion dur="3.2s" repeatCount="indefinite" path="M 500 250 Q 600 180, 700 80"/>
+        <!-- Fast Data Particles -->
+        <circle r="3" fill="#10b981" filter="url(#glow)">
+          <animateMotion dur="2s" repeatCount="indefinite" path="M 500 250 Q 300 150, 150 100" />
         </circle>
-        <circle r="3" fill="#ef4444" filter="url(#industryGlow)">
-          <animateMotion dur="3.2s" repeatCount="indefinite" path="M 500 250 Q 600 180, 700 80" begin="1.2s"/>
+        <circle r="3" fill="#3b82f6" filter="url(#glow)">
+          <animateMotion dur="1.8s" repeatCount="indefinite" path="M 500 250 Q 350 100, 300 80" begin="0.5s" />
         </circle>
-
-        <!-- Healthcare (top-right) -->
-        <path d="M 500 250 Q 650 200, 850 100" fill="none" stroke="url(#healthcareGrad)" stroke-width="2" class="industry-stream" filter="url(#industryGlow)"/>
-        <circle r="4" fill="#ef4444" filter="url(#industryGlow)">
-          <animateMotion dur="2.9s" repeatCount="indefinite" path="M 500 250 Q 650 200, 850 100"/>
+        <circle r="3" fill="#f97316" filter="url(#glow)">
+          <animateMotion dur="2.2s" repeatCount="indefinite" path="M 500 250 Q 650 100, 700 80" begin="1s" />
         </circle>
-        <circle r="3" fill="#ec4899" filter="url(#industryGlow)">
-          <animateMotion dur="2.9s" repeatCount="indefinite" path="M 500 250 Q 650 200, 850 100" begin="0.9s"/>
+        <circle r="3" fill="#ef4444" filter="url(#glow)">
+          <animateMotion dur="1.9s" repeatCount="indefinite" path="M 500 250 Q 700 150, 850 100" begin="1.5s" />
         </circle>
-
-        <!-- Aviation (bottom-left) -->
-        <path d="M 500 250 Q 350 300, 150 400" fill="none" stroke="url(#aviationGrad)" stroke-width="2" class="industry-stream" filter="url(#industryGlow)"/>
-        <circle r="4" fill="#0ea5e9" filter="url(#industryGlow)">
-          <animateMotion dur="3.1s" repeatCount="indefinite" path="M 500 250 Q 350 300, 150 400"/>
+        <circle r="3" fill="#0ea5e9" filter="url(#glow)">
+          <animateMotion dur="2.1s" repeatCount="indefinite" path="M 500 250 Q 300 350, 150 400" begin="0.2s" />
         </circle>
-        <circle r="3" fill="#6366f1" filter="url(#industryGlow)">
-          <animateMotion dur="3.1s" repeatCount="indefinite" path="M 500 250 Q 350 300, 150 400" begin="1.1s"/>
+        <circle r="3" fill="#a855f7" filter="url(#glow)">
+          <animateMotion dur="1.7s" repeatCount="indefinite" path="M 500 250 Q 350 400, 300 420" begin="0.8s" />
         </circle>
-
-        <!-- AI & ML (bottom-center-left) -->
-        <path d="M 500 250 Q 400 320, 300 420" fill="none" stroke="url(#aiGrad)" stroke-width="2" class="industry-stream" filter="url(#industryGlow)"/>
-        <circle r="4" fill="#a855f7" filter="url(#industryGlow)">
-          <animateMotion dur="2.7s" repeatCount="indefinite" path="M 500 250 Q 400 320, 300 420"/>
+        <circle r="3" fill="#eab308" filter="url(#glow)">
+          <animateMotion dur="2.3s" repeatCount="indefinite" path="M 500 250 Q 650 400, 700 420" begin="1.2s" />
         </circle>
-        <circle r="3" fill="#ec4899" filter="url(#industryGlow)">
-          <animateMotion dur="2.7s" repeatCount="indefinite" path="M 500 250 Q 400 320, 300 420" begin="0.7s"/>
-        </circle>
-
-        <!-- Automotive (bottom-center-right) -->
-        <path d="M 500 250 Q 600 320, 700 420" fill="none" stroke="url(#autoGrad)" stroke-width="2" class="industry-stream" filter="url(#industryGlow)"/>
-        <circle r="4" fill="#eab308" filter="url(#industryGlow)">
-          <animateMotion dur="3.3s" repeatCount="indefinite" path="M 500 250 Q 600 320, 700 420"/>
-        </circle>
-        <circle r="3" fill="#f97316" filter="url(#industryGlow)">
-          <animateMotion dur="3.3s" repeatCount="indefinite" path="M 500 250 Q 600 320, 700 420" begin="1.3s"/>
-        </circle>
-
-        <!-- Telecommunications (bottom-right) -->
-        <path d="M 500 250 Q 650 300, 850 400" fill="none" stroke="url(#telecomGrad)" stroke-width="2" class="industry-stream" filter="url(#industryGlow)"/>
-        <circle r="4" fill="#06b6d4" filter="url(#industryGlow)">
-          <animateMotion dur="2.6s" repeatCount="indefinite" path="M 500 250 Q 650 300, 850 400"/>
-        </circle>
-        <circle r="3" fill="#10b981" filter="url(#industryGlow)">
-          <animateMotion dur="2.6s" repeatCount="indefinite" path="M 500 250 Q 650 300, 850 400" begin="0.6s"/>
+        <circle r="3" fill="#06b6d4" filter="url(#glow)">
+          <animateMotion dur="1.8s" repeatCount="indefinite" path="M 500 250 Q 700 350, 850 400" begin="0.6s" />
         </circle>
       </svg>
 
-      <!-- Central StreamFusion Hub -->
-      <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-        <div class="relative">
-          <div class="absolute inset-0 w-24 h-24 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full blur-xl opacity-50 pulse-dot"></div>
-          <div class="relative w-24 h-24 bg-slate-900 rounded-full flex items-center justify-center border-2 border-slate-700 shadow-2xl">
-            <img src="streamfusion-logo.png" alt="StreamFusion" class="w-20 h-20 object-contain">
-          </div>
-          <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900 animate-pulse"></div>
+      <!-- Central Hub (Scaled down for this section) -->
+      <div class="absolute left-1/2 top-1/2 z-20" style="width: 150px; height: 150px; transform: translate(-50%, -50%) scale(0.85);">
+        <div class="hub-ambient-glow"></div>
+        <div class="hub-energy-ring"></div>
+        <div class="hub-energy-ring-2"></div>
+
+        <div class="hub-core">
+          <img src="streamfusion-logo.png" alt="StreamFusion" class="hub-logo">
         </div>
-        <div class="text-center mt-2">
-          <div class="text-xs font-mono text-cyan-400 data-counter">10B+ events/day</div>
+
+        <div class="execution-counter" style="bottom: -30px; font-size: 10px;">
+          <i data-lucide="activity" class="w-3 h-3 inline mr-1"></i>
+          <span>10B+ events/day</span>
         </div>
       </div>
 
-      <!-- Industry Nodes positioned around the hub -->
+      <!-- Holographic Industry Nodes -->
       <!-- Finance -->
-      <div class="absolute left-20 top-16 z-10">
-        <div class="bg-slate-900 border border-green-500/30 p-3 rounded-xl shadow-lg industry-node text-green-400">
-          <div class="flex items-center gap-2">
-            <i data-lucide="landmark" class="w-5 h-5"></i>
-            <span class="text-xs font-semibold">Finance</span>
-          </div>
-          <div class="text-[10px] text-slate-500 mt-1 font-mono">2.4M tx/s</div>
+      <div class="holo-node" style="left: 5%; top: 15%; --node-color: #10b981;">
+        <div class="holo-node-header">
+          <div class="holo-node-icon"><i data-lucide="landmark" class="w-4 h-4"></i></div>
+          <span class="holo-node-title">FINANCE</span>
+        </div>
+        <div class="holo-node-metric">
+          <span>2.4M tx/s</span>
+          <div class="holo-status"></div>
         </div>
       </div>
 
       <!-- E-commerce -->
-      <div class="absolute left-1/4 top-8 z-10">
-        <div class="bg-slate-900 border border-blue-500/30 p-3 rounded-xl shadow-lg industry-node text-blue-400">
-          <div class="flex items-center gap-2">
-            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-            <span class="text-xs font-semibold">E-commerce</span>
-          </div>
-          <div class="text-[10px] text-slate-500 mt-1 font-mono">890K orders/s</div>
+      <div class="holo-node" style="left: 22%; top: 5%; --node-color: #3b82f6;">
+        <div class="holo-node-header">
+          <div class="holo-node-icon"><i data-lucide="shopping-bag" class="w-4 h-4"></i></div>
+          <span class="holo-node-title">E-COMMERCE</span>
+        </div>
+        <div class="holo-node-metric">
+          <span>890K orders/s</span>
+          <div class="holo-status"></div>
         </div>
       </div>
 
       <!-- Manufacturing -->
-      <div class="absolute right-1/4 top-8 z-10">
-        <div class="bg-slate-900 border border-orange-500/30 p-3 rounded-xl shadow-lg industry-node text-orange-400">
-          <div class="flex items-center gap-2">
-            <i data-lucide="factory" class="w-5 h-5"></i>
-            <span class="text-xs font-semibold">Manufacturing</span>
-          </div>
-          <div class="text-[10px] text-slate-500 mt-1 font-mono">5.1M sensors</div>
+      <div class="holo-node" style="right: 22%; top: 5%; --node-color: #f97316;">
+        <div class="holo-node-header">
+          <div class="holo-node-icon"><i data-lucide="factory" class="w-4 h-4"></i></div>
+          <span class="holo-node-title">MANUFACTURING</span>
+        </div>
+        <div class="holo-node-metric">
+          <span>5.1M sensors</span>
+          <div class="holo-status"></div>
         </div>
       </div>
 
       <!-- Healthcare -->
-      <div class="absolute right-20 top-16 z-10">
-        <div class="bg-slate-900 border border-red-500/30 p-3 rounded-xl shadow-lg industry-node text-red-400">
-          <div class="flex items-center gap-2">
-            <i data-lucide="heart-pulse" class="w-5 h-5"></i>
-            <span class="text-xs font-semibold">Healthcare</span>
-          </div>
-          <div class="text-[10px] text-slate-500 mt-1 font-mono">1.2M records/s</div>
+      <div class="holo-node" style="right: 5%; top: 15%; --node-color: #ef4444;">
+        <div class="holo-node-header">
+          <div class="holo-node-icon"><i data-lucide="heart-pulse" class="w-4 h-4"></i></div>
+          <span class="holo-node-title">HEALTHCARE</span>
+        </div>
+        <div class="holo-node-metric">
+          <span>1.2M records/s</span>
+          <div class="holo-status"></div>
         </div>
       </div>
 
       <!-- Aviation -->
-      <div class="absolute left-20 bottom-24 z-10">
-        <div class="bg-slate-900 border border-sky-500/30 p-3 rounded-xl shadow-lg industry-node text-sky-400">
-          <div class="flex items-center gap-2">
-            <i data-lucide="plane" class="w-5 h-5"></i>
-            <span class="text-xs font-semibold">Aviation</span>
-          </div>
-          <div class="text-[10px] text-slate-500 mt-1 font-mono">45K flights</div>
+      <div class="holo-node" style="left: 5%; bottom: 15%; --node-color: #0ea5e9;">
+        <div class="holo-node-header">
+          <div class="holo-node-icon"><i data-lucide="plane" class="w-4 h-4"></i></div>
+          <span class="holo-node-title">AVIATION</span>
+        </div>
+        <div class="holo-node-metric">
+          <span>45K flights</span>
+          <div class="holo-status"></div>
         </div>
       </div>
 
       <!-- AI & ML -->
-      <div class="absolute left-1/4 bottom-16 z-10">
-        <div class="bg-slate-900 border border-purple-500/30 p-3 rounded-xl shadow-lg industry-node text-purple-400">
-          <div class="flex items-center gap-2">
-            <i data-lucide="cpu" class="w-5 h-5"></i>
-            <span class="text-xs font-semibold">AI & ML</span>
-          </div>
-          <div class="text-[10px] text-slate-500 mt-1 font-mono">780K models</div>
+      <div class="holo-node" style="left: 22%; bottom: 5%; --node-color: #a855f7;">
+        <div class="holo-node-header">
+          <div class="holo-node-icon"><i data-lucide="cpu" class="w-4 h-4"></i></div>
+          <span class="holo-node-title">AI & ML</span>
+        </div>
+        <div class="holo-node-metric">
+          <span>780K models</span>
+          <div class="holo-status"></div>
         </div>
       </div>
 
       <!-- Automotive -->
-      <div class="absolute right-1/4 bottom-16 z-10">
-        <div class="bg-slate-900 border border-yellow-500/30 p-3 rounded-xl shadow-lg industry-node text-yellow-400">
-          <div class="flex items-center gap-2">
-            <i data-lucide="car" class="w-5 h-5"></i>
-            <span class="text-xs font-semibold">Automotive</span>
-          </div>
-          <div class="text-[10px] text-slate-500 mt-1 font-mono">3.2M vehicles</div>
+      <div class="holo-node" style="right: 22%; bottom: 5%; --node-color: #eab308;">
+        <div class="holo-node-header">
+          <div class="holo-node-icon"><i data-lucide="car" class="w-4 h-4"></i></div>
+          <span class="holo-node-title">AUTOMOTIVE</span>
+        </div>
+        <div class="holo-node-metric">
+          <span>3.2M vehicles</span>
+          <div class="holo-status"></div>
         </div>
       </div>
 
       <!-- Telecommunications -->
-      <div class="absolute right-20 bottom-24 z-10">
-        <div class="bg-slate-900 border border-cyan-500/30 p-3 rounded-xl shadow-lg industry-node text-cyan-400">
-          <div class="flex items-center gap-2">
-            <i data-lucide="wifi" class="w-5 h-5"></i>
-            <span class="text-xs font-semibold">Telecom</span>
-          </div>
-          <div class="text-[10px] text-slate-500 mt-1 font-mono">12B signals</div>
+      <div class="holo-node" style="right: 5%; bottom: 15%; --node-color: #06b6d4;">
+        <div class="holo-node-header">
+          <div class="holo-node-icon"><i data-lucide="wifi" class="w-4 h-4"></i></div>
+          <span class="holo-node-title">TELECOM</span>
+        </div>
+        <div class="holo-node-metric">
+          <span>12B signals</span>
+          <div class="holo-status"></div>
         </div>
       </div>
 
-      <!-- Data flow indicators -->
-      <div class="absolute top-1/2 left-10 -translate-y-1/2 flex flex-col gap-2">
-        <div class="w-1 h-8 bg-gradient-to-b from-green-500 to-transparent rounded-full animate-pulse"></div>
-        <div class="w-1 h-8 bg-gradient-to-b from-sky-500 to-transparent rounded-full animate-pulse" style="animation-delay: -0.5s"></div>
-      </div>
-      <div class="absolute top-1/2 right-10 -translate-y-1/2 flex flex-col gap-2">
-        <div class="w-1 h-8 bg-gradient-to-b from-red-500 to-transparent rounded-full animate-pulse"></div>
-        <div class="w-1 h-8 bg-gradient-to-b from-cyan-500 to-transparent rounded-full animate-pulse" style="animation-delay: -0.5s"></div>
-      </div>
     </div>
 
-    <!-- Industry Cards Grid -->
+    <!-- Industry Cards Grid -->    <!-- Modern Industry Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-      <div class="bento-card rounded-2xl p-6 fade-in">
-        <div class="w-12 h-12 bg-green-500/10 border border-green-500/20 rounded-xl flex items-center justify-center mb-4">
-          <i data-lucide="landmark" class="w-6 h-6 text-green-400"></i>
+
+      <!-- Finance -->
+      <div class="industry-card fade-in" style="--theme-color: #10b981;">
+        <div class="industry-card-content">
+          <div class="industry-header">
+            <div class="industry-icon-box">
+              <i data-lucide="landmark" class="w-6 h-6"></i>
+            </div>
+            <div class="live-badge"><span class="live-dot"></span> Live</div>
+          </div>
+          <h3 class="industry-title">Finance & Banking</h3>
+          <p class="industry-desc">Secure transaction routing, fraud detection, and legacy mainframe integration.</p>
+          <div class="industry-metrics">
+            <span class="metric-label">Throughput</span>
+            <span class="metric-value">2.4M tx/s</span>
+          </div>
         </div>
-        <h3 class="text-lg font-bold mb-2">Finance & Banking</h3>
-        <p class="text-sm text-slate-400">Secure transaction routing, fraud detection, ATM networks, and legacy mainframe integration.</p>
       </div>
 
-      <div class="bento-card rounded-2xl p-6 fade-in">
-        <div class="w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center mb-4">
-          <i data-lucide="shopping-bag" class="w-6 h-6 text-blue-400"></i>
+      <!-- E-commerce -->
+      <div class="industry-card fade-in" style="--theme-color: #3b82f6;">
+        <div class="industry-card-content">
+          <div class="industry-header">
+            <div class="industry-icon-box">
+              <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+            </div>
+            <div class="live-badge"><span class="live-dot"></span> Live</div>
+          </div>
+          <h3 class="industry-title">E-commerce</h3>
+          <p class="industry-desc">Real-time inventory sync, order processing, and payment gateway orchestration.</p>
+          <div class="industry-metrics">
+            <span class="metric-label">Orders/sec</span>
+            <span class="metric-value">890K/s</span>
+          </div>
         </div>
-        <h3 class="text-lg font-bold mb-2">E-commerce</h3>
-        <p class="text-sm text-slate-400">Real-time inventory sync, order processing, and payment gateway orchestration.</p>
       </div>
 
-      <div class="bento-card rounded-2xl p-6 fade-in">
-        <div class="w-12 h-12 bg-orange-500/10 border border-orange-500/20 rounded-xl flex items-center justify-center mb-4">
-          <i data-lucide="factory" class="w-6 h-6 text-orange-400"></i>
+      <!-- Manufacturing -->
+      <div class="industry-card fade-in" style="--theme-color: #f97316;">
+        <div class="industry-card-content">
+          <div class="industry-header">
+            <div class="industry-icon-box">
+              <i data-lucide="factory" class="w-6 h-6"></i>
+            </div>
+            <div class="live-badge"><span class="live-dot"></span> Live</div>
+          </div>
+          <h3 class="industry-title">Manufacturing</h3>
+          <p class="industry-desc">IoT sensor integration, predictive maintenance, and supply chain automation.</p>
+          <div class="industry-metrics">
+            <span class="metric-label">Active Sensors</span>
+            <span class="metric-value">5.1M</span>
+          </div>
         </div>
-        <h3 class="text-lg font-bold mb-2">Manufacturing</h3>
-        <p class="text-sm text-slate-400">IoT sensor integration, predictive maintenance, and supply chain automation.</p>
       </div>
 
-      <div class="bento-card rounded-2xl p-6 fade-in">
-        <div class="w-12 h-12 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center justify-center mb-4">
-          <i data-lucide="heart-pulse" class="w-6 h-6 text-red-400"></i>
+      <!-- Healthcare -->
+      <div class="industry-card fade-in" style="--theme-color: #ef4444;">
+        <div class="industry-card-content">
+          <div class="industry-header">
+            <div class="industry-icon-box">
+              <i data-lucide="heart-pulse" class="w-6 h-6"></i>
+            </div>
+            <div class="live-badge"><span class="live-dot"></span> Live</div>
+          </div>
+          <h3 class="industry-title">Healthcare</h3>
+          <p class="industry-desc">HIPAA-compliant HL7/FHIR exchange and EHR synchronization.</p>
+          <div class="industry-metrics">
+            <span class="metric-label">Records/sec</span>
+            <span class="metric-value">1.2M/s</span>
+          </div>
         </div>
-        <h3 class="text-lg font-bold mb-2">Healthcare</h3>
-        <p class="text-sm text-slate-400">HIPAA-compliant HL7/FHIR exchange and EHR synchronization.</p>
       </div>
 
-      <div class="bento-card rounded-2xl p-6 fade-in">
-        <div class="w-12 h-12 bg-sky-500/10 border border-sky-500/20 rounded-xl flex items-center justify-center mb-4">
-          <i data-lucide="plane" class="w-6 h-6 text-sky-400"></i>
+      <!-- Aviation -->
+      <div class="industry-card fade-in" style="--theme-color: #0ea5e9;">
+        <div class="industry-card-content">
+          <div class="industry-header">
+            <div class="industry-icon-box">
+              <i data-lucide="plane" class="w-6 h-6"></i>
+            </div>
+            <div class="live-badge"><span class="live-dot"></span> Live</div>
+          </div>
+          <h3 class="industry-title">Aviation</h3>
+          <p class="industry-desc">Flight data aggregation, crew scheduling, and PSS integration.</p>
+          <div class="industry-metrics">
+            <span class="metric-label">Active Flights</span>
+            <span class="metric-value">45K</span>
+          </div>
         </div>
-        <h3 class="text-lg font-bold mb-2">Aviation</h3>
-        <p class="text-sm text-slate-400">Flight data aggregation, crew scheduling, and PSS integration.</p>
       </div>
 
-      <div class="bento-card rounded-2xl p-6 fade-in">
-        <div class="w-12 h-12 bg-purple-500/10 border border-purple-500/20 rounded-xl flex items-center justify-center mb-4">
-          <i data-lucide="cpu" class="w-6 h-6 text-purple-400"></i>
+      <!-- AI & ML -->
+      <div class="industry-card fade-in" style="--theme-color: #a855f7;">
+        <div class="industry-card-content">
+          <div class="industry-header">
+            <div class="industry-icon-box">
+              <i data-lucide="cpu" class="w-6 h-6"></i>
+            </div>
+            <div class="live-badge"><span class="live-dot"></span> Live</div>
+          </div>
+          <h3 class="industry-title">AI & Machine Learning</h3>
+          <p class="industry-desc">Data pipelines, API gateways, and vector store integrations for ML models.</p>
+          <div class="industry-metrics">
+            <span class="metric-label">Models Trained</span>
+            <span class="metric-value">780K</span>
+          </div>
         </div>
-        <h3 class="text-lg font-bold mb-2">AI & Machine Learning</h3>
-        <p class="text-sm text-slate-400">Data pipelines, API gateways, and vector store integrations for ML models.</p>
       </div>
 
-      <div class="bento-card rounded-2xl p-6 fade-in">
-        <div class="w-12 h-12 bg-yellow-500/10 border border-yellow-500/20 rounded-xl flex items-center justify-center mb-4">
-          <i data-lucide="car" class="w-6 h-6 text-yellow-400"></i>
+      <!-- Automotive -->
+      <div class="industry-card fade-in" style="--theme-color: #eab308;">
+        <div class="industry-card-content">
+          <div class="industry-header">
+            <div class="industry-icon-box">
+              <i data-lucide="car" class="w-6 h-6"></i>
+            </div>
+            <div class="live-badge"><span class="live-dot"></span> Live</div>
+          </div>
+          <h3 class="industry-title">Automotive</h3>
+          <p class="industry-desc">Connected vehicle data, manufacturing IoT, and dealership systems.</p>
+          <div class="industry-metrics">
+            <span class="metric-label">Connected Cars</span>
+            <span class="metric-value">3.2M</span>
+          </div>
         </div>
-        <h3 class="text-lg font-bold mb-2">Automotive</h3>
-        <p class="text-sm text-slate-400">Connected vehicle data, manufacturing IoT, and dealership systems.</p>
       </div>
 
-      <div class="bento-card rounded-2xl p-6 fade-in">
-        <div class="w-12 h-12 bg-cyan-500/10 border border-cyan-500/20 rounded-xl flex items-center justify-center mb-4">
-          <i data-lucide="wifi" class="w-6 h-6 text-cyan-400"></i>
+      <!-- Telecommunications -->
+      <div class="industry-card fade-in" style="--theme-color: #06b6d4;">
+        <div class="industry-card-content">
+          <div class="industry-header">
+            <div class="industry-icon-box">
+              <i data-lucide="wifi" class="w-6 h-6"></i>
+            </div>
+            <div class="live-badge"><span class="live-dot"></span> Live</div>
+          </div>
+          <h3 class="industry-title">Telecommunications</h3>
+          <p class="industry-desc">Network monitoring, billing systems, and customer data platforms.</p>
+          <div class="industry-metrics">
+            <span class="metric-label">Signals/sec</span>
+            <span class="metric-value">12B/s</span>
+          </div>
         </div>
-        <h3 class="text-lg font-bold mb-2">Telecommunications</h3>
-        <p class="text-sm text-slate-400">Network monitoring, billing systems, and customer data platforms.</p>
       </div>
+
     </div>
   </div>
 </section>
@@ -1771,11 +2176,11 @@
   <div class="container mx-auto px-6">
     <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
       <div class="col-span-2">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-14 h-14">
+        <div class="footer-logo-shine flex items-center gap-3 mb-6">
+          <div class="w-14 h-14 relative z-10">
             <img src="streamfusion-logo.png" alt="StreamFusion" class="w-full h-full object-contain">
           </div>
-          <span class="text-white font-semibold mb-4 text-xl">StreamFusion</span>
+          <span class="footer-brand-text font-semibold mb-4 text-xl relative z-10">StreamFusion</span>
         </div>
         <p class="text-sm text-slate-500 max-w-xs leading-relaxed mb-6">
           The unified eIPaaS and BPM platform built for IoT scale. Manage the fusion of your data streams.
@@ -1804,7 +2209,7 @@
       </div>
 
       <div>
-        <h4 class="text-white font-semibold mb-4 text-sm">Developers</h4>
+        <h4 class="text-white font-semibold mb-4 text-sm">Omnibus</h4>
         <ul class="space-y-3 text-sm text-slate-500">
           <li><a href="#developers" class="hover:text-white transition">Documentation</a></li>
           <li><a href="#" class="hover:text-white transition">SDK</a></li>
